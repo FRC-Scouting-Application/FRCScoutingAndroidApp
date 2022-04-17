@@ -3,23 +3,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_teams">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="ca.tnoah.frc.scouting.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/nav_teams"
+        android:name="ca.tnoah.frc.scouting.ui.teams.TeamsFragment"
+        android:label="@string/menu_teams"
+        tools:layout="@layout/fragment_teams" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="ca.tnoah.frc.scouting.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_events"
+        android:name="ca.tnoah.frc.scouting.ui.events.EventsFragment"
+        android:label="@string/menu_events"
+        tools:layout="@layout/fragment_events" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="ca.tnoah.frc.scouting.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_share"
+        android:name="ca.tnoah.frc.scouting.ui.share.ShareFragment"
+        android:label="@string/menu_share"
+        tools:layout="@layout/fragment_share" />
+
+    <fragment
+        android:id="@+id/nav_export"
+        android:name="ca.tnoah.frc.scouting.ui.export.ExportFragment"
+        android:label="@string/menu_export"
+        tools:layout="@layout/fragment_export" />
+
+    <fragment
+        android:id="@+id/nav_sync"
+        android:name="ca.tnoah.frc.scouting.ui.sync.SyncFragment"
+        android:label="@string/menu_sync"
+        tools:layout="@layout/fragment_sync" />
+
+    <fragment
+        android:id="@+id/nav_templates"
+        android:name="ca.tnoah.frc.scouting.ui.templates.TemplatesFragment"
+        android:label="@string/menu_templates"
+        tools:layout="@layout/fragment_templates" />
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="ca.tnoah.frc.scouting.ui.settings.SettingsFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/fragment_settings" />
+
 </navigation>
