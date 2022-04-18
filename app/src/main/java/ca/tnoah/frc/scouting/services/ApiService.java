@@ -1,5 +1,11 @@
-package ca.tnoah.frc.scouting.api.api;
+package ca.tnoah.frc.scouting.services;
 
+import ca.tnoah.frc.scouting.services.api.ApiEventsService;
+import ca.tnoah.frc.scouting.services.api.ApiMatchesService;
+import ca.tnoah.frc.scouting.services.api.ApiNotesService;
+import ca.tnoah.frc.scouting.services.api.ApiScoutsService;
+import ca.tnoah.frc.scouting.services.api.ApiTeamsService;
+import ca.tnoah.frc.scouting.services.api.ApiTemplateService;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

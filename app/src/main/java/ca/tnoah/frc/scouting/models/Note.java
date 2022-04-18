@@ -1,10 +1,12 @@
-package ca.tnoah.frc.scouting.api.models;
+package ca.tnoah.frc.scouting.models;
 
+import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
 
-public class ScoutBase {
+@Entity(tableName = "notes")
+public class Note {
 
     @PrimaryKey
     @NotNull
@@ -18,5 +20,8 @@ public class ScoutBase {
 
     @NotNull
     public String scoutName;
+
+    @NotNull
+    public String text;
 
 }

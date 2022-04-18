@@ -1,4 +1,4 @@
-package ca.tnoah.frc.scouting.api.models;
+package ca.tnoah.frc.scouting.models;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
