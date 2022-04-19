@@ -1,11 +1,17 @@
 package ca.tnoah.frc.scouting.services;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.util.Date;
+
 import ca.tnoah.frc.scouting.services.api.ApiEventsService;
 import ca.tnoah.frc.scouting.services.api.ApiMatchesService;
 import ca.tnoah.frc.scouting.services.api.ApiNotesService;
 import ca.tnoah.frc.scouting.services.api.ApiScoutsService;
 import ca.tnoah.frc.scouting.services.api.ApiTeamsService;
 import ca.tnoah.frc.scouting.services.api.ApiTemplateService;
+import ca.tnoah.frc.scouting.services.api.DateDeserializer;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -13,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiService {
     private static ApiService instance;
 
-    private static final String BASE_URL = "https://localhost:7089/api/";
+    private static final String BASE_URL = "https://scoutapi.tnoah.ca/api/";
 
     private final Retrofit retrofit;
 
@@ -34,9 +40,14 @@ public class ApiService {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         OkHttpClient client = builder.build();
 
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+                .registerTypeAdapter(Date.class, new DateDeserializer())
+                .create();
+
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build();
 

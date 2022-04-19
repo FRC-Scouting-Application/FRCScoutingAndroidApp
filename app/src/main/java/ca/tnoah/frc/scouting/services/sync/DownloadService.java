@@ -3,6 +3,8 @@ package ca.tnoah.frc.scouting.services.sync;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import ca.tnoah.frc.scouting.models.Event;
@@ -27,7 +29,7 @@ public class DownloadService {
     private final ApiService api;
     private final AppDatabase db;
 
-    public static DownloadService getInstance() {
+    protected static DownloadService getInstance() {
         if (instance == null)
             instance = new DownloadService();
         return instance;
@@ -38,24 +40,43 @@ public class DownloadService {
         this.db = DatabaseService.getInstance().getDB();
     }
 
+    protected void download(String[] eventKeys) {
+        DownloadAsync downloadAsync = new DownloadAsync();
+        downloadAsync.execute(eventKeys);
+    }
+
+    protected void download() {
+        DownloadAsync downloadAsync = new DownloadAsync();
+        downloadAsync.execute();
+    }
+
     private class DownloadAsync extends AsyncTask<String, String, String> {
 
         @Override
         protected String doInBackground(String... strings) {
-            String eventKey = strings[0];
-            if (eventKey.isEmpty()) {
-                Log.d(TAG, "Event Key Missing");
-                return null;
-            }
+            Log.d(TAG, "Start Download");
 
             downloadEvents();
-            downloadMatches(eventKey);
-            downloadNotes(eventKey);
-            downloadNotes(eventKey);
             downloadTeams();
             downloadTemplates();
 
+            if (strings.length > 0) {
+                for (String eventKey : strings)
+                    downloadKeyItems(eventKey);
+            } else {
+                List<String> keys = getAllEventKeys();
+                for (String eventKey : keys)
+                    downloadKeyItems(eventKey);
+            }
+
+            Log.d(TAG, "Finished Download");
             return null;
+        }
+
+        private void downloadKeyItems(String eventKey) {
+            downloadMatches(eventKey);
+            downloadNotes(eventKey);
+            downloadScouts(eventKey);
         }
 
         private void downloadEvents() {
@@ -65,7 +86,7 @@ public class DownloadService {
             call.enqueue(new Callback<List<Event>>() {
                 @Override
                 public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
-                    if (response.isSuccessful() || response.body() == null)
+                    if (!response.isSuccessful() || response.body() == null)
                         fail(type);
                     else if (response.body().size() == 0)
                         empty(type);
@@ -75,7 +96,7 @@ public class DownloadService {
 
                 @Override
                 public void onFailure(Call<List<Event>> call, Throwable t) {
-                    fail(type);
+                    fail(type + " - " + t.getMessage());
                 }
             });
         }
@@ -87,7 +108,7 @@ public class DownloadService {
             call.enqueue(new Callback<List<Match>>() {
                 @Override
                 public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
-                    if (response.isSuccessful() || response.body() == null)
+                    if (!response.isSuccessful() || response.body() == null)
                         fail(type);
                     else if (response.body().size() == 0)
                         empty(type);
@@ -97,7 +118,7 @@ public class DownloadService {
 
                 @Override
                 public void onFailure(Call<List<Match>> call, Throwable t) {
-                    fail(type);
+                    fail(type + " - " + t.getMessage());
                 }
             });
         }
@@ -109,7 +130,7 @@ public class DownloadService {
             call.enqueue(new Callback<List<Note>>() {
                 @Override
                 public void onResponse(Call<List<Note>> call, Response<List<Note>> response) {
-                    if (response.isSuccessful() || response.body() == null)
+                    if (!response.isSuccessful() || response.body() == null)
                         fail(type);
                     else if (response.body().size() == 0)
                         empty(type);
@@ -119,7 +140,7 @@ public class DownloadService {
 
                 @Override
                 public void onFailure(Call<List<Note>> call, Throwable t) {
-                    fail(type);
+                    fail(type + " - " + t.getMessage());
                 }
             });
         }
@@ -131,7 +152,7 @@ public class DownloadService {
             call.enqueue(new Callback<List<Scout>>() {
                 @Override
                 public void onResponse(Call<List<Scout>> call, Response<List<Scout>> response) {
-                    if (response.isSuccessful() || response.body() == null)
+                    if (!response.isSuccessful() || response.body() == null)
                         fail(type);
                     else if (response.body().size() == 0)
                         empty(type);
@@ -141,7 +162,7 @@ public class DownloadService {
 
                 @Override
                 public void onFailure(Call<List<Scout>> call, Throwable t) {
-                    fail(type);
+                    fail(type + " - " + t.getMessage());
                 }
             });
         }
@@ -153,7 +174,7 @@ public class DownloadService {
             call.enqueue(new Callback<List<Team>>() {
                 @Override
                 public void onResponse(Call<List<Team>> call, Response<List<Team>> response) {
-                    if (response.isSuccessful() || response.body() == null)
+                    if (!response.isSuccessful() || response.body() == null)
                         fail(type);
                     else if (response.body().size() == 0)
                         empty(type);
@@ -163,7 +184,7 @@ public class DownloadService {
 
                 @Override
                 public void onFailure(Call<List<Team>> call, Throwable t) {
-                    fail(type);
+                    fail(type + " - " + t.getMessage());
                 }
             });
         }
@@ -175,7 +196,7 @@ public class DownloadService {
             call.enqueue(new Callback<List<Template>>() {
                 @Override
                 public void onResponse(Call<List<Template>> call, Response<List<Template>> response) {
-                    if (response.isSuccessful() || response.body() == null)
+                    if (!response.isSuccessful() || response.body() == null)
                         fail(type);
                     else if (response.body().size() == 0)
                         empty(type);
@@ -185,9 +206,19 @@ public class DownloadService {
 
                 @Override
                 public void onFailure(Call<List<Template>> call, Throwable t) {
-                    fail(type);;
+                    fail(type + " - " + t.getMessage());
                 }
             });
+        }
+
+        private List<String> getAllEventKeys() {
+            List<Event> events = db.eventsDAO().getAll();
+
+            List<String> keys = new ArrayList<>();
+            for (Event event : events)
+                keys.add(event.key);
+
+            return keys;
         }
 
         private void fail(String msg) {

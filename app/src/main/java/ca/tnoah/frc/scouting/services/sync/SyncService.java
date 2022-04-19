@@ -13,7 +13,7 @@ public class SyncService {
 
     }
 
-    public void Download() {
-
+    public void Sync() {
+        DownloadService.getInstance().download();
     }
 }

@@ -7,14 +7,12 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
 
-@Entity(tableName = "templates")
+@Entity(tableName = "templates", primaryKeys = {"id", "version"})
 public class Template {
 
-    @PrimaryKey
     @NotNull
     public int id;
 
-    @PrimaryKey
     @NotNull
     public int version;
 
