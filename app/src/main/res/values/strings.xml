@@ -1,5 +1,17 @@
 <resources>
     <string name="app_name">FRC Scouting Application</string>
+
+    <!-- Menu -->
+    <string name="menu_teams">Teams</string>
+    <string name="menu_events">Events</string>
+    <string name="menu_share">Share over Bluetooth</string>
+    <string name="menu_export">Export to File</string>
+    <string name="menu_sync">Sync to Server</string>
+    <string name="menu_templates">Templates</string>
+    <string name="menu_settings">Settings</string>
+
+
+    <!-- Unsorted -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -10,4 +22,6 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
