@@ -13,7 +13,19 @@
     <!-- List Items -->
     <string name="title">Title</string>
     <string name="subtitle">Subtitle</string>
+
+    <!-- Events -->
+    <string name="event_name">Event Name</string>
+    <string name="event_type">Event</string>
+    <string name="week">Week</string>
+    <string name="teams_at_event">Teams at Event:</string>
+    <string name="open_blue_alliance">Open Blue Alliance</string>
+    <string name="select_event">Select Event</string>
+
+    <!-- Titles -->
+    <string name="location">Location</string>
     <string name="date">Date</string>
+
 
     <!-- Unsorted -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
