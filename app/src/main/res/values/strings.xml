@@ -22,6 +22,12 @@
     <string name="open_blue_alliance">Open Blue Alliance</string>
     <string name="select_event">Select Event</string>
 
+    <!-- Teams -->
+    <string name="menu_team">Team</string>
+    <string name="menu_pit">Pit Scout</string>
+    <string name="menu_match">Match Scout</string>
+    <string name="menu_notes">Notes</string>
+
     <!-- Titles -->
     <string name="location">Location</string>
     <string name="date">Date</string>
@@ -40,4 +46,8 @@
     <string name="menu_slideshow">Slideshow</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_team_detail">TeamDetailActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

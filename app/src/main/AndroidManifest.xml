@@ -13,18 +13,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FRCScoutingApplication">
         <activity
-            android:name=".ui.events.EventDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".ui.teams.details.TeamDetailActivity"
             android:exported="true"
-            android:label="@string/app_name"
+            android:label="@string/title_activity_team_detail"
             android:theme="@style/Theme.FRCScoutingApplication.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.events.EventDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FRCScoutingApplication.NoActionBar"/>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.FRCScoutingApplication.NoActionBar">
+
         </activity>
     </application>
 

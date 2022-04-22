@@ -15,18 +15,35 @@
         <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/connect-api/app/src/main/res/layouts/templates/layout/fragment_templates.xml" value="0.823822463768116" />
         <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/connect-api/app/src/main/res/menu/activity_main_drawer.xml" value="0.9119791666666667" />
         <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/connect-api/app/src/main/res/menu/main.xml" value="0.9119791666666667" />
+        <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.5869791666666667" />
+        <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/drawable/ic_outline_pit_24.xml" value="0.7369791666666666" />
         <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/drawable/top_bottom_border.xml" value="0.928125" />
         <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/drawable/week_background.xml" value="0.5990740740740741" />
         <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/layout/activity_event_detail.xml" value="0.6402695871946082" />
-        <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/layout/activity_main.xml" value="0.8600543478260869" />
+        <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/layout/activity_main.xml" value="0.6605603448275862" />
+        <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/layout/activity_team_detail.xml" value="0.5" />
         <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/layout/app_bar_main.xml" value="0.8600543478260869" />
+        <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/layout/app_bar_team_detail.xml" value="0.33" />
         <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/layout/basic_list_item.xml" value="0.8596014492753623" />
+        <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/layout/content_main.xml" value="0.5671875" />
+        <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/layout/fragment_dashboard.xml" value="0.8858695652173914" />
+        <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/layout/fragment_match_scout.xml" value="0.6640625" />
+        <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/layout/fragment_notes.xml" value="0.5671875" />
+        <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/layout/fragment_pit_scout.xml" value="0.5671875" />
+        <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/layout/fragment_team.xml" value="0.5671875" />
         <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/layout/list_item.xml" value="0.8596014492753623" />
         <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/layout/list_itme.xml" value="0.8596014492753623" />
         <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/layout/nav_header_main.xml" value="0.8600543478260869" />
         <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/layout/team_at_event_list.xml" value="0.8600543478260869" />
+        <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/layout/team_detail_image.xml" value="0.6640625" />
         <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/layouts/events/layout/fragment_events.xml" value="0.27760891590678827" />
         <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/layouts/teams/layout/fragment_teams.xml" value="0.6363636363636364" />
+        <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/layouts/templates/drawable/ic_outline_arrow_back_24.xml" value="0.7" />
+        <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/layouts/templates/drawable/ic_outline_groups_24.xml" value="0.7369791666666666" />
+        <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/layouts/templates/drawable/ic_outline_notes_24.xml" value="0.7369791666666666" />
+        <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/menu/activity_main_drawer.xml" value="0.7208333333333333" />
+        <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/menu/main.xml" value="0.6640625" />
+        <entry key="..\:/Users/1tomk/Documents/FRCScoutingApp/Android/create-teams-and-events-list/app/src/main/res/menu/team_detail_bottom_nav_menu.xml" value="0.7208333333333333" />
       </map>
     </option>
   </component>

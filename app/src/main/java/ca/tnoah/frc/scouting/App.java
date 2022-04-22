@@ -16,7 +16,7 @@ public class App extends Application {
         super.onCreate();
         context = this;
 
-        SyncService.getInstance().Sync();
+        //SyncService.getInstance().Sync();
     }
 
     public static Context getContext() {

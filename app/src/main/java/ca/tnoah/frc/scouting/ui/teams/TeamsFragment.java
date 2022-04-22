@@ -1,5 +1,6 @@
 package ca.tnoah.frc.scouting.ui.teams;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,6 +18,8 @@ import ca.tnoah.frc.scouting.models.Team;
 import ca.tnoah.frc.scouting.services.ApiService;
 import ca.tnoah.frc.scouting.services.DatabaseService;
 import ca.tnoah.frc.scouting.services.localdb.AppDatabase;
+import ca.tnoah.frc.scouting.ui.events.EventDetailActivity;
+import ca.tnoah.frc.scouting.ui.teams.details.TeamDetailActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,7 +50,16 @@ public class TeamsFragment extends Fragment {
         adapter = new TeamsListAdapter(getActivity(), db.teamsDAO().getAll());
 
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this::onTeamClick);
 
         return view;
+    }
+
+    private void onTeamClick(AdapterView<?> parent, View view, int position, long id) {
+        String teamKey = adapter.getItem(position).key;
+
+        Intent switchToDetails = new Intent(getActivity(), TeamDetailActivity.class);
+        switchToDetails.putExtra(TeamDetailActivity.TEAM_KEY, teamKey);
+        startActivity(switchToDetails);
     }
 }
