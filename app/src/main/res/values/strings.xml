@@ -10,6 +10,9 @@
     <string name="menu_templates">Templates</string>
     <string name="menu_settings">Settings</string>
 
+    <!-- List Items -->
+    <string name="title">Title</string>
+    <string name="subtitle">Subtitle</string>
 
     <!-- Unsorted -->
     <string name="navigation_drawer_open">Open navigation drawer</string>

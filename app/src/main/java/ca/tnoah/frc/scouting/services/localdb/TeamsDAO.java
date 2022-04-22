@@ -13,7 +13,7 @@ import ca.tnoah.frc.scouting.models.Team;
 @Dao
 public interface TeamsDAO {
 
-    @Query("SELECT * FROM teams")
+    @Query("SELECT * FROM teams ORDER BY `teamNumber` ASC")
     List<Team> getAll();
 
     @Query("SELECT * FROM teams WHERE `key` = :key")

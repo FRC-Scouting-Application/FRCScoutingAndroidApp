@@ -13,7 +13,7 @@ import ca.tnoah.frc.scouting.models.Match;
 @Dao
 public interface MatchesDAO {
 
-    @Query("SELECT * FROM matches")
+    @Query("SELECT * FROM matches ORDER BY `matchNumber` ASC")
     List<Match> getAll();
 
     @Query("SELECT * FROM matches WHERE `key` = :key")

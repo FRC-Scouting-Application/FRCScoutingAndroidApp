@@ -13,7 +13,7 @@ import ca.tnoah.frc.scouting.models.Scout;
 @Dao
 public interface ScoutsDAO {
 
-    @Query("SELECT * FROM scouts")
+    @Query("SELECT * FROM scouts ORDER BY `scoutName` ASC")
     List<Scout> getAll();
 
     @Query("SELECT * FROM scouts WHERE `id` = :id")
