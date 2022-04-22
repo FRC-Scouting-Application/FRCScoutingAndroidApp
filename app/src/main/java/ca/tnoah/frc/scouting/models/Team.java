@@ -46,4 +46,6 @@ public class Team {
     @Nullable
     public String website;
 
+    @Nullable
+    public byte[] image;
 }

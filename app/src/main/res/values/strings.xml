@@ -13,6 +13,7 @@
     <!-- List Items -->
     <string name="title">Title</string>
     <string name="subtitle">Subtitle</string>
+    <string name="date">Date</string>
 
     <!-- Unsorted -->
     <string name="navigation_drawer_open">Open navigation drawer</string>

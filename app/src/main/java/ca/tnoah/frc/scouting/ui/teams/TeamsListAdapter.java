@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,19 +16,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ca.tnoah.frc.scouting.R;
+import ca.tnoah.frc.scouting.helpers.BitmapHelper;
 import ca.tnoah.frc.scouting.models.Team;
 
 public class TeamsListAdapter extends ArrayAdapter<Team> {
     private static final String TAG = "==TeamsListAdapter==";
 
     private final Activity context;
-    private final List<Team> originalTeams;
+    private final List<Team> original;
 
     public TeamsListAdapter(Activity context, List<Team> teams) {
         super(context, R.layout.list_item, new ArrayList<>(teams));
 
         this.context = context;
-        this.originalTeams = new ArrayList<>(teams);
+        this.original = new ArrayList<>(teams);
     }
 
     @NonNull
