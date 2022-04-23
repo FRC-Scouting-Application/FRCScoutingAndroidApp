@@ -1,12 +1,15 @@
-package ca.tnoah.frc.scouting;
+package ca.tnoah.frc.scouting.ui;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.SearchView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -14,12 +17,16 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
+import ca.tnoah.frc.scouting.R;
 import ca.tnoah.frc.scouting.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+
+    private MainViewModel viewModel;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        initNav();
+        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        viewModel.getPage().observe(this, this::onPageChange);
+    }
+
+    private void initNav() {
         setSupportActionBar(binding.appBarMain.toolbar);
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -46,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        searchView = (SearchView) searchItem.getActionView();
+        searchView.setOnQueryTextListener(this);
+
         return true;
     }
 
@@ -54,5 +72,36 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        viewModel.setSearch(s);
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        viewModel.setSearch(s);
+        return false;
+    }
+
+    public void resetSearch() {
+        if (searchView == null) return;
+
+        searchView.setQuery("", false);
+        searchView.setIconified(true);
+    }
+
+    public void onPageChange(String page) {
+        resetSearch();
+
+        if (searchView != null) {
+            if (page.equals("teams") || page.equals("events")) {
+                searchView.setVisibility(View.VISIBLE);
+            } else {
+                searchView.setVisibility(View.INVISIBLE);
+            }
+        }
     }
 }

@@ -16,6 +16,14 @@ public interface ScoutsDAO {
     @Query("SELECT * FROM scouts ORDER BY `scoutName` ASC")
     List<Scout> getAll();
 
+    @Query("SELECT * FROM scouts " +
+            "JOIN templates ON scouts.templateId = templates.id " +
+            "AND scouts.templateVersion = templates.version " +
+            "WHERE templates.type = :type AND scouts.eventKey = :eventKey " +
+            "AND scouts.teamKey = :teamKey " +
+            "ORDER BY `scoutName` ASC")
+    List<Scout> getAll(String type, String eventKey, String teamKey);
+
     @Query("SELECT * FROM scouts WHERE `id` = :id")
     Scout get(int id);
 

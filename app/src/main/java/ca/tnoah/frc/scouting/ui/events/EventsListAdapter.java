@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,12 +16,15 @@ import java.util.List;
 
 import ca.tnoah.frc.scouting.R;
 import ca.tnoah.frc.scouting.models.Event;
+import ca.tnoah.frc.scouting.ui.teams.TeamsListAdapter;
 
 public class EventsListAdapter extends ArrayAdapter<Event> {
     private static final String TAG = "==EventsListAdapter==";
 
     private final Activity context;
     private final List<Event> original;
+
+    private EventFilter filter;
 
     public EventsListAdapter(Activity context, List<Event> events) {
         super(context, R.layout.list_item, new ArrayList<>(events));
@@ -48,5 +52,55 @@ public class EventsListAdapter extends ArrayAdapter<Event> {
         dateTV.setVisibility(View.VISIBLE);
 
         return rowView;
+    }
+
+    @Override
+    public Filter getFilter() {
+        if (filter == null){
+            filter = new EventFilter();
+        }
+        return filter;
+    }
+
+    private class EventFilter extends Filter
+    {
+
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            String filter = constraint.toString().toLowerCase();
+            FilterResults result = new FilterResults();
+            if(constraint.toString().length() > 0)
+            {
+                ArrayList<Event> filteredItems = new ArrayList<>();
+
+                for(int i = 0, l = original.size(); i < l; i++)
+                {
+                    Event event = original.get(i);
+                    if(event.filter(filter))
+                        filteredItems.add(event);
+                }
+                result.count = filteredItems.size();
+                result.values = filteredItems;
+            }
+            else
+            {
+                result.values = original;
+                result.count = original.size();
+            }
+            return result;
+        }
+
+        @SuppressWarnings("unchecked")
+        @Override
+        protected void publishResults(CharSequence constraint,
+                                      FilterResults results) {
+
+            ArrayList<Event> filteredEvents = (ArrayList<Event>)results.values;
+            notifyDataSetChanged();
+            clear();
+            for(int i = 0, l = filteredEvents.size(); i < l; i++)
+                add(filteredEvents.get(i));
+            notifyDataSetInvalidated();
+        }
     }
 }

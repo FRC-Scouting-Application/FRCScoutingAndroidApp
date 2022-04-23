@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import ca.tnoah.frc.scouting.R;
 import ca.tnoah.frc.scouting.services.ApiService;
 import ca.tnoah.frc.scouting.services.DatabaseService;
 import ca.tnoah.frc.scouting.services.localdb.AppDatabase;
+import ca.tnoah.frc.scouting.ui.MainViewModel;
 import ca.tnoah.frc.scouting.ui.teams.TeamsListAdapter;
 
 public class EventsFragment extends Fragment {
@@ -39,6 +41,10 @@ public class EventsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_events, container, false);
 
+        MainViewModel viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+        viewModel.setPage("events");
+        viewModel.getSearch().observe(this, this::onSearch);
+
         ListView listView = view.findViewById(R.id.events_list);
         adapter = new EventsListAdapter(getActivity(), db.eventsDAO().getAll());
 
@@ -55,4 +61,10 @@ public class EventsFragment extends Fragment {
         switchToDetails.putExtra(EventDetailActivity.EVENT_KEY, eventKey);
         startActivity(switchToDetails);
     }
+
+    private void onSearch(String search) {
+        if (adapter != null)
+            adapter.getFilter().filter(search);
+    }
+
 }

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,6 +25,8 @@ public class TeamsListAdapter extends ArrayAdapter<Team> {
 
     private final Activity context;
     private final List<Team> original;
+
+    private TeamFilter filter;
 
     public TeamsListAdapter(Activity context, List<Team> teams) {
         super(context, R.layout.list_item, new ArrayList<>(teams));
@@ -47,5 +50,50 @@ public class TeamsListAdapter extends ArrayAdapter<Team> {
         ((TextView) rowView.findViewById(R.id.li_subtitle)).setText(team.nickname);
 
         return rowView;
+    }
+
+    @Override
+    public Filter getFilter() {
+        if (filter == null){
+            filter  = new TeamFilter();
+        }
+        return filter;
+    }
+
+    private class TeamFilter extends Filter {
+
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            String filter = constraint.toString().toLowerCase();
+            FilterResults result = new FilterResults();
+            if (constraint.toString().length() > 0) {
+                ArrayList<Team> filteredItems = new ArrayList<>();
+
+                for (int i = 0, l = original.size(); i < l; i++) {
+                    Team team = original.get(i);
+                    if (team.filter(filter))
+                        filteredItems.add(team);
+                }
+                result.count = filteredItems.size();
+                result.values = filteredItems;
+            } else {
+                result.values = original;
+                result.count = original.size();
+            }
+            return result;
+        }
+
+        @SuppressWarnings("unchecked")
+        @Override
+        protected void publishResults(CharSequence constraint,
+                                      FilterResults results) {
+
+            ArrayList<Team> filteredTeams = (ArrayList<Team>) results.values;
+            notifyDataSetChanged();
+            clear();
+            for (int i = 0, l = filteredTeams.size(); i < l; i++)
+                add(filteredTeams.get(i));
+            notifyDataSetInvalidated();
+        }
     }
 }

@@ -16,6 +16,10 @@ public interface NotesDAO {
     @Query("SELECT * FROM notes ORDER BY `scoutName` ASC")
     List<Note> getAll();
 
+    @Query("SELECT * FROM notes WHERE `eventKey` = :eventKey " +
+            "AND `teamKey` = :teamKey")
+    List<Note> getAll(String eventKey, String teamKey);
+
     @Query("SELECT * FROM notes WHERE `id` = :id")
     Note get(int id);
 

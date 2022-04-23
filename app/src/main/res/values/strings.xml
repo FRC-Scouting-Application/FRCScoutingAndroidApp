@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">FRC Scouting Application</string>
+    <string name="version_number">0.1.0</string>
 
     <!-- Menu -->
     <string name="menu_teams">Teams</string>
@@ -9,10 +10,16 @@
     <string name="menu_sync">Sync to Server</string>
     <string name="menu_templates">Templates</string>
     <string name="menu_settings">Settings</string>
+    <string name="search">Search</string>
 
     <!-- List Items -->
     <string name="title">Title</string>
     <string name="subtitle">Subtitle</string>
+
+    <!-- Login -->
+    <string name="standalone">Standalone</string>
+    <string name="with_a_team">With a Team</string>
+    <string name="custom_setup">Custom Setup</string>
 
     <!-- Events -->
     <string name="event_name">Event Name</string>
@@ -28,10 +35,66 @@
     <string name="menu_match">Match Scout</string>
     <string name="menu_notes">Notes</string>
 
+    <!-- Team Details -->
+    <string name="team_location">From</string>
+    <string name="team_aka">aka</string>
+    <string name="team_rookie_year">Rookie Year:</string>
+
+    <!-- Notes -->
+    <string name="note_by">Note by</string>
+
     <!-- Titles -->
     <string name="location">Location</string>
     <string name="date">Date</string>
+    <string name="website">Website</string>
 
+    <!-- Sync -->
+    <string name="sync_now">Sync Now</string>
+
+    <!-- Settings -->
+    <string name="user_interface">User Interface</string>
+    <string name="general">General</string>
+    <string name="about">About</string>
+
+    <string name="night_mode">Night Mode</string>
+    <string-array name="night_mode_options">
+        <item>Auto</item>
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+
+    <string name="prevent_template_editing">Prevent Template Editing</string>
+    <string name="prevent_template_editing_desc">
+        Choose whether or not the template editor will be shown.
+        Useful to prevent accidental edits from non-lead team members.
+    </string>
+
+    <string name="sync_frequency">Sync Frequency</string>
+    <string name="sync_frequency_desc">
+        Frequency the application will sync the data to the
+        server when connected to the internet.
+    </string>
+    <string-array name="sync_frequency_options">
+        <item>Every 10 mins</item>
+        <item>Every 30 mins</item>
+        <item>Every hour</item>
+        <item>Manual</item>
+    </string-array>
+
+    <string name="login_option">Login Option</string>
+    <string name="login_option_desc">
+        Changing this option will reset all of your data.
+    </string>
+    <string-array name="login_option_options">
+        <item>@string/standalone</item>
+        <item>@string/with_a_team</item>
+        <item>@string/custom_setup</item>
+    </string-array>
+
+    <string name="release_notes">Release Notes</string>
+    <string name="release_notes_desc">View the latest release notes</string>
+
+    <string name="version">Version</string>
 
     <!-- Unsorted -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -41,10 +104,6 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_team_detail">TeamDetailActivity</string>
     <string name="title_home">Home</string>

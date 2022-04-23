@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -86,5 +87,29 @@ public class Event {
         if (shortName == null || shortName.isEmpty())
             return name;
         return shortName;
+    }
+
+    public boolean filter(String filter) {
+        filter = filter.toLowerCase();
+        String[] filters = filter.split(" ");
+
+        Field[] fields = this.getClass().getDeclaredFields();
+
+        for (String value : filters) {
+            boolean match = false;
+            for (Field f : fields) {
+                try {
+                    String fValue = String.valueOf(f.get(this));
+                    if (fValue.toLowerCase().contains(value)) {
+                        match = true;
+                    }
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (!match) return false;
+        }
+
+        return true;
     }
 }

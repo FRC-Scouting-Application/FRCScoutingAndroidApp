@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/nav_pit"
-        android:name="ca.tnoah.frc.scouting.ui.teams.details.pit.PitScoutFragment"
+        android:name="ca.tnoah.frc.scouting.ui.teams.details.scout.PitScoutFragment"
         android:label="@string/menu_pit"
         tools:layout="@layout/fragment_pit_scout" />
 
     <fragment
         android:id="@+id/nav_match"
-        android:name="ca.tnoah.frc.scouting.ui.teams.details.match.MatchScoutFragment"
+        android:name="ca.tnoah.frc.scouting.ui.teams.details.scout.MatchScoutFragment"
         android:label="@string/menu_match"
         tools:layout="@layout/fragment_match_scout" />
 
