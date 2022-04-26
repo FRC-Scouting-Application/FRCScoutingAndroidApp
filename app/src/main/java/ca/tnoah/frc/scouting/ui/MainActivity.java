@@ -9,8 +9,11 @@ import android.widget.SearchView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -20,7 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import ca.tnoah.frc.scouting.R;
 import ca.tnoah.frc.scouting.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, NavController.OnDestinationChangedListener {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
@@ -37,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         initNav();
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        viewModel.getPage().observe(this, this::onPageChange);
     }
 
     private void initNav() {
@@ -53,6 +55,25 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        navController.addOnDestinationChangedListener(this);
+    }
+
+    @Override
+    public void onDestinationChanged(@NonNull NavController navController, @NonNull NavDestination navDestination, @Nullable Bundle bundle) {
+        if (searchView == null) return;
+
+        String dest = navDestination.getDisplayName().split(":id/nav_")[1];
+
+        switch (dest) {
+            case "teams":
+            case "events":
+                searchView.setVisibility(View.VISIBLE);
+                break;
+            default:
+                searchView.setVisibility(View.GONE);
+                break;
+        }
     }
 
     @Override
@@ -91,17 +112,5 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         searchView.setQuery("", false);
         searchView.setIconified(true);
-    }
-
-    public void onPageChange(String page) {
-        resetSearch();
-
-        if (searchView != null) {
-            if (page.equals("teams") || page.equals("events")) {
-                searchView.setVisibility(View.VISIBLE);
-            } else {
-                searchView.setVisibility(View.INVISIBLE);
-            }
-        }
     }
 }

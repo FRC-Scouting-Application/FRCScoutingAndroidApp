@@ -28,9 +28,6 @@ public class ShareFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_share, container, false);
 
-        MainViewModel viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
-        viewModel.setPage("settings");
-
         return view;
     }
 }

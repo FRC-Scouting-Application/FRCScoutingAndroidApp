@@ -49,7 +49,6 @@ public class TeamsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_teams, container, false);
 
         MainViewModel viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
-        viewModel.setPage("teams");
         viewModel.getSearch().observe(this, this::onSearch);
 
         ListView listView = view.findViewById(R.id.teams_list);

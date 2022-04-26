@@ -9,7 +9,6 @@ import ca.tnoah.frc.scouting.models.Team;
 public class TeamViewModel extends ViewModel {
 
     private MutableLiveData<Team> team = new MutableLiveData<>();
-    private MutableLiveData<Boolean> mainPage = new MutableLiveData<>();
 
     public LiveData<Team> getTeam() {
         if (this.team == null)
@@ -21,13 +20,4 @@ public class TeamViewModel extends ViewModel {
         this.team.setValue(team);
     }
 
-    public LiveData<Boolean> getMainPage() {
-        if (this.mainPage == null)
-            this.mainPage = new MutableLiveData<>(true);
-        return this.mainPage;
-    }
-
-    public void setMainPage(boolean mainPage) {
-        this.mainPage.setValue(mainPage);
-    }
 }

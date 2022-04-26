@@ -31,9 +31,6 @@ public class SyncFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sync, container, false);
 
-        MainViewModel viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
-        viewModel.setPage("sync");
-
         view.findViewById(R.id.sync_now).setOnClickListener(this::onSyncNowClicked);
 
         return view;

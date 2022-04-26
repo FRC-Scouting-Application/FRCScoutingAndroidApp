@@ -42,7 +42,6 @@ public class EventsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_events, container, false);
 
         MainViewModel viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
-        viewModel.setPage("events");
         viewModel.getSearch().observe(this, this::onSearch);
 
         ListView listView = view.findViewById(R.id.events_list);

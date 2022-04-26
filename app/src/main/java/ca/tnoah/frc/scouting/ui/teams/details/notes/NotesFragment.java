@@ -45,7 +45,6 @@ public class NotesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_notes, container, false);
 
         TeamViewModel viewModel = new ViewModelProvider(requireActivity()).get(TeamViewModel.class);
-        viewModel.setMainPage(false);
         viewModel.getTeam().observe(this, this::loadTeam);
 
         listView = view.findViewById(R.id.notes_list);

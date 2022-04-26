@@ -37,7 +37,6 @@ public class TeamFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_team, container, false);
 
         TeamViewModel viewModel = new ViewModelProvider(requireActivity()).get(TeamViewModel.class);
-        viewModel.setMainPage(true);
         viewModel.getTeam().observe(this, this::onTeamChanged);
 
         return view;

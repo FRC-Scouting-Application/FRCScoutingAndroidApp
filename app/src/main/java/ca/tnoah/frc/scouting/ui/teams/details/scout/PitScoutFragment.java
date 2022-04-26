@@ -30,7 +30,6 @@ public class PitScoutFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pit_scout, container, false);
 
         TeamViewModel viewModel = new ViewModelProvider(requireActivity()).get(TeamViewModel.class);
-        viewModel.setMainPage(false);
 
         return view;
     }

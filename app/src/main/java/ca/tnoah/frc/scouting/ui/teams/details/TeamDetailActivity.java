@@ -14,10 +14,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -34,13 +36,15 @@ import ca.tnoah.frc.scouting.services.DatabaseService;
 import ca.tnoah.frc.scouting.services.localdb.AppDatabase;
 import ca.tnoah.frc.scouting.databinding.ActivityTeamDetailBinding;
 
-public class TeamDetailActivity extends AppCompatActivity {
+public class TeamDetailActivity extends AppCompatActivity implements NavController.OnDestinationChangedListener  {
     private static final String TAG = "==TeamDetailActivity==";
 
     private final AppDatabase db = DatabaseService.getInstance().getDB();
 
     public static final String TEAM_KEY = "team_key";
     private ActivityTeamDetailBinding binding;
+
+    private ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +55,10 @@ public class TeamDetailActivity extends AppCompatActivity {
 
         initNav();
         TeamViewModel viewModel = new ViewModelProvider(this).get(TeamViewModel.class);
-        viewModel.setMainPage(true);
-        viewModel.getMainPage().observe(this, this::setMainPage);
-
         Intent intent = getIntent();
         String teamKey = intent.getStringExtra(TEAM_KEY);
+
+        image = findViewById(R.id.team_image);
 
         Team team = db.teamsDAO().get(teamKey);
         if (team != null) {
@@ -64,11 +67,24 @@ public class TeamDetailActivity extends AppCompatActivity {
             DownloadImage downloadImage = new DownloadImage("https://i.imgur.com/q4SYoxBh.jpg");
             downloadImage.getBitmap().observe(this, bitmap -> {
                 if (bitmap != null)
-                    ((ImageView) findViewById(R.id.team_image)).setImageBitmap(bitmap);
+                    image.setImageBitmap(bitmap);
             });
 
             viewModel.setTeam(team);
         }
+    }
+
+    @Override
+    public void onDestinationChanged(@NonNull NavController navController, @NonNull NavDestination navDestination, @Nullable Bundle bundle) {
+        if (image == null) return;
+
+        String dest = navDestination.getDisplayName().split(":id/nav_")[1];
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, 0
+        );
+        params.weight = (dest.equals("team")) ? 1.5f : 4.0f;
+        findViewById(R.id.nav_host_fragment_activity_team_detail).setLayoutParams(params);
     }
 
     private void initNav() {
@@ -84,15 +100,7 @@ public class TeamDetailActivity extends AppCompatActivity {
         setTitle("");
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-    }
-
-    private void setMainPage(boolean main) {
-        // Image shrink / expand
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, 0
-        );
-        params.weight = main ? 1.5f : 4.0f;
-        findViewById(R.id.nav_host_fragment_activity_team_detail).setLayoutParams(params);
+        navController.addOnDestinationChangedListener(this);
     }
 
     @Override

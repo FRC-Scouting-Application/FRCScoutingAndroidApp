@@ -28,9 +28,6 @@ public class ExportFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_export, container, false);
 
-        MainViewModel viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
-        viewModel.setPage("export");
-
         return view;
     }
 }

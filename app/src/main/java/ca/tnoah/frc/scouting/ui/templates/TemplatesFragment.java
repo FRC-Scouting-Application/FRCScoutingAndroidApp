@@ -29,7 +29,6 @@ public class TemplatesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_templates, container, false);
 
         MainViewModel viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
-        viewModel.setPage("templates");
 
         return view;
     }
