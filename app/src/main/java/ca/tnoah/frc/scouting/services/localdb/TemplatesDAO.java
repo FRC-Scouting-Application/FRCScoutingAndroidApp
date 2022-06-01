@@ -13,7 +13,7 @@ import ca.tnoah.frc.scouting.models.Template;
 @Dao
 public interface TemplatesDAO {
 
-    @Query("SELECT * FROM templates")
+    @Query("SELECT * FROM templates ORDER BY `defaultTemplate` DESC, `version` DESC, `name` ASC")
     List<Template> getAll();
 
     @Query("SELECT * FROM templates WHERE `id` = :id AND `version` = :version")

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/user_interface">
+
+        <ListPreference
+            android:defaultValue="0"
+            android:key="night_mode"
+            android:entries="@array/night_mode_options"
+            android:entryValues="@array/night_mode_values"
+            android:summary="%s"
+            android:title="@string/night_mode"
+            android:icon="@drawable/ic_outline_mode_night_24"
+            />
+
+        <SwitchPreference
+            android:key="prevent_template_editing"
+            android:defaultValue="false"
+            android:icon="@drawable/ic_outline_lock_24"
+            android:summary="@string/prevent_template_editing_desc"
+            android:title="@string/prevent_template_editing"
+            />
+
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/general">
+
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/sync_frequency_options"
+            android:entryValues="@array/sync_frequency_values"
+            android:key="sync_frequency"
+            android:summary="@string/sync_frequency_desc"
+            android:title="@string/sync_frequency"
+            android:icon="@drawable/ic_outline_sync_24"
+            />
+
+        <Preference
+            android:key="login_option"
+            android:title="@string/login_option"
+            android:summary="@string/login_option_desc"
+            android:icon="@drawable/ic_outline_account_circle_24"
+            />
+
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/about">
+
+        <Preference
+            android:key="release_notes"
+            android:title="@string/release_notes"
+            android:summary="@string/release_notes_desc"
+            />
+
+        <Preference
+            android:key="version"
+            android:title="@string/version"
+            android:summary="@string/version_number"
+            />
+
+    </PreferenceCategory>
+</PreferenceScreen>

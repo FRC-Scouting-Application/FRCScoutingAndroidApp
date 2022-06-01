@@ -20,6 +20,5 @@
     </style>
 
     <style name="Theme.FRCScoutingApplication.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
     <style name="Theme.FRCScoutingApplication.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

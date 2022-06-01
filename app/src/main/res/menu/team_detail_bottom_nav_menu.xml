@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/nav_team"
+        android:icon="@drawable/ic_outline_groups_24"
+        android:title="@string/menu_team" />
+
+    <item
+        android:id="@+id/nav_pit"
+        android:icon="@drawable/ic_outline_pit_24"
+        android:title="@string/menu_pit" />
+
+    <item
+        android:id="@+id/nav_match"
+        android:icon="@drawable/ic_outline_route_24"
+        android:title="@string/menu_match" />
+
+    <item
+        android:id="@+id/nav_notes"
+        android:icon="@drawable/ic_outline_notes_24"
+        android:title="@string/menu_notes" />
+
+</menu>

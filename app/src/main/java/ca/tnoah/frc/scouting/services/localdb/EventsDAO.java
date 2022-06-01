@@ -13,7 +13,7 @@ import ca.tnoah.frc.scouting.models.Event;
 @Dao
 public interface EventsDAO {
 
-    @Query("SELECT * FROM events")
+    @Query("SELECT * FROM events ORDER BY `startDate` ASC")
     List<Event> getAll();
 
     @Query("SELECT * FROM events WHERE `key` = :key")

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation2"
+    app:startDestination="@id/nav_team">
+
+    <fragment
+        android:id="@+id/nav_team"
+        android:name="ca.tnoah.frc.scouting.ui.teams.details.team.TeamFragment"
+        android:label="@string/menu_team"
+        tools:layout="@layout/fragment_team" />
+
+    <fragment
+        android:id="@+id/nav_pit"
+        android:name="ca.tnoah.frc.scouting.ui.teams.details.scout.PitScoutFragment"
+        android:label="@string/menu_pit"
+        tools:layout="@layout/fragment_pit_scout" />
+
+    <fragment
+        android:id="@+id/nav_match"
+        android:name="ca.tnoah.frc.scouting.ui.teams.details.scout.MatchScoutFragment"
+        android:label="@string/menu_match"
+        tools:layout="@layout/fragment_match_scout" />
+
+    <fragment
+        android:id="@+id/nav_notes"
+        android:name="ca.tnoah.frc.scouting.ui.teams.details.notes.NotesFragment"
+        android:label="@string/menu_notes"
+        tools:layout="@layout/fragment_notes" />
+</navigation>
