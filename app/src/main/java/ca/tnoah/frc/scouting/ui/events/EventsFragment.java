@@ -54,7 +54,7 @@ public class EventsFragment extends Fragment {
     }
 
     private void onEventClick(AdapterView<?> parent, View view, int position, long id) {
-        String eventKey = adapter.getItem(position).key;
+        String eventKey = adapter.getItem(position).id;
 
         Intent switchToDetails = new Intent(getActivity(), EventDetailActivity.class);
         switchToDetails.putExtra(EventDetailActivity.EVENT_KEY, eventKey);

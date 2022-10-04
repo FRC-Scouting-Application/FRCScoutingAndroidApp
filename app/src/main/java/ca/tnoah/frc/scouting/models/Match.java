@@ -13,7 +13,7 @@ public class Match {
 
     @PrimaryKey
     @NotNull
-    public String key;
+    public String id;
 
     @NotNull
     public int matchNumber;

@@ -66,7 +66,7 @@ public class NotesFragment extends Fragment {
 
         Log.d(TAG, "Load team");
 
-        adapter = new NotesListAdapter(getActivity(), "2022on325", team.key);
+        adapter = new NotesListAdapter(getActivity(), "2022on325", team.id);
         listView.setAdapter(adapter);
     }
 

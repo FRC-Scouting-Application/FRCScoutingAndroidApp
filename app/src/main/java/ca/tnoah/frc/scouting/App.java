@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 
+import ca.tnoah.frc.scouting.services.localdb.AppDatabase;
 import ca.tnoah.frc.scouting.services.sync.SyncService;
 
 public class App extends Application {

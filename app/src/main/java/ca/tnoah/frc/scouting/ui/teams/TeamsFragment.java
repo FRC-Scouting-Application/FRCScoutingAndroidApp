@@ -61,7 +61,7 @@ public class TeamsFragment extends Fragment {
     }
 
     private void onTeamClick(AdapterView<?> parent, View view, int position, long id) {
-        String teamKey = adapter.getItem(position).key;
+        String teamKey = adapter.getItem(position).id;
 
         Intent switchToDetails = new Intent(getActivity(), TeamDetailActivity.class);
         switchToDetails.putExtra(TeamDetailActivity.TEAM_KEY, teamKey);

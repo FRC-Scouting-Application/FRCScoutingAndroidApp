@@ -16,8 +16,8 @@ public interface TeamsDAO {
     @Query("SELECT * FROM teams ORDER BY `teamNumber` ASC")
     List<Team> getAll();
 
-    @Query("SELECT * FROM teams WHERE `key` = :key")
-    Team get(String key);
+    @Query("SELECT * FROM teams WHERE `id` = :id")
+    Team get(String id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertOrUpdate(Team team);

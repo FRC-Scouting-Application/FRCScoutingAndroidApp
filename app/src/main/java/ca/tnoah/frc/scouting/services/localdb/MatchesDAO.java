@@ -16,8 +16,8 @@ public interface MatchesDAO {
     @Query("SELECT * FROM matches ORDER BY `matchNumber` ASC")
     List<Match> getAll();
 
-    @Query("SELECT * FROM matches WHERE `key` = :key")
-    Match get(String key);
+    @Query("SELECT * FROM matches WHERE `id` = :id")
+    Match get(String id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertOrUpdate(Match match);

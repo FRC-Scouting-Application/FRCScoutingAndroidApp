@@ -216,7 +216,7 @@ public class DownloadService {
 
             List<String> keys = new ArrayList<>();
             for (Event event : events)
-                keys.add(event.key);
+                keys.add(event.id);
 
             return keys;
         }

@@ -18,7 +18,7 @@ public class Event {
 
     @PrimaryKey
     @NotNull
-    public String key;
+    public String id;
 
     @NotNull
     public String name;

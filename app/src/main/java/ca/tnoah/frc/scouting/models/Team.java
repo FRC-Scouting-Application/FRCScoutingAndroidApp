@@ -14,7 +14,7 @@ public class Team {
 
     @PrimaryKey
     @NotNull
-    public String key;
+    public String id;
 
     @NotNull
     public int teamNumber;
