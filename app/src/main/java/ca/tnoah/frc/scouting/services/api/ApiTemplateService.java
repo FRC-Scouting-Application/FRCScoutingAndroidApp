@@ -11,9 +11,9 @@ import retrofit2.http.POST;
 
 public interface ApiTemplateService {
 
-    @GET("Template")
+    @GET("Templates")
     Call<List<Template>> getTemplates();
 
-    @POST("Template")
+    @POST("Templates")
     Call<ResponseBody> addTemplates(@Body List<Template> templates);
 }
