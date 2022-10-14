@@ -8,7 +8,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import ca.tnoah.frc.scouting.models.Event;
+import ca.tnoah.frc.scouting.models.dbo.Event;
 
 @Dao
 public interface EventsDAO {

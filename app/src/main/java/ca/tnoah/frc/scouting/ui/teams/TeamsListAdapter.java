@@ -4,10 +4,8 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,8 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ca.tnoah.frc.scouting.R;
-import ca.tnoah.frc.scouting.helpers.BitmapHelper;
-import ca.tnoah.frc.scouting.models.Team;
+import ca.tnoah.frc.scouting.models.dbo.Team;
 
 public class TeamsListAdapter extends ArrayAdapter<Team> {
     private static final String TAG = "==TeamsListAdapter==";

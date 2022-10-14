@@ -8,7 +8,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import ca.tnoah.frc.scouting.models.Scout;
+import ca.tnoah.frc.scouting.models.dbo.Scout;
 
 @Dao
 public interface ScoutsDAO {

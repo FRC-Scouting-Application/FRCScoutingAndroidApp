@@ -8,7 +8,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import ca.tnoah.frc.scouting.models.Template;
+import ca.tnoah.frc.scouting.models.dbo.Template;
 
 @Dao
 public interface TemplatesDAO {

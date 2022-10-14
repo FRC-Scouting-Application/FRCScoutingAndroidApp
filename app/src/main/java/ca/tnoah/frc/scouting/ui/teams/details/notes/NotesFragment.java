@@ -12,15 +12,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ca.tnoah.frc.scouting.R;
-import ca.tnoah.frc.scouting.models.Note;
-import ca.tnoah.frc.scouting.models.Team;
+import ca.tnoah.frc.scouting.models.dbo.Team;
 import ca.tnoah.frc.scouting.services.DatabaseService;
 import ca.tnoah.frc.scouting.services.localdb.AppDatabase;
-import ca.tnoah.frc.scouting.ui.teams.details.TeamDetailActivity;
 import ca.tnoah.frc.scouting.ui.teams.details.TeamViewModel;
 
 public class NotesFragment extends Fragment {
@@ -45,7 +40,7 @@ public class NotesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_notes, container, false);
 
         TeamViewModel viewModel = new ViewModelProvider(requireActivity()).get(TeamViewModel.class);
-        viewModel.getTeam().observe(this, this::loadTeam);
+        viewModel.getTeam().observe(getViewLifecycleOwner(), this::loadTeam);
 
         listView = view.findViewById(R.id.notes_list);
         listView.setOnItemClickListener(this::onNoteClick);

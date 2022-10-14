@@ -8,7 +8,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import ca.tnoah.frc.scouting.models.Team;
+import ca.tnoah.frc.scouting.models.dbo.Team;
 
 @Dao
 public interface TeamsDAO {

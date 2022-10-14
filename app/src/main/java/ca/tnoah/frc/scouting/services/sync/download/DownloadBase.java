@@ -4,9 +4,8 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
-import ca.tnoah.frc.scouting.models.Event;
+import ca.tnoah.frc.scouting.models.dbo.Event;
 import ca.tnoah.frc.scouting.services.ApiService;
 import ca.tnoah.frc.scouting.services.DatabaseService;
 import ca.tnoah.frc.scouting.services.localdb.AppDatabase;
@@ -16,42 +15,47 @@ import retrofit2.Response;
 
 public abstract class DownloadBase<T> {
 
+    protected final String type;
     protected final String tag;
+
     protected final ApiService api;
     protected final AppDatabase db;
 
-    protected DownloadBase(String tag) {
-        this.tag = tag;
+    protected DownloadBase(String type) {
+        this.type = type;
+        this.tag = "==Download" + type + "==";
 
         this.api = ApiService.getInstance();
         this.db = DatabaseService.getInstance().getDB();
     }
 
-    protected void download(Call<List<T>> call, Consumer<List<T>> onRetrieve, String type) {
+    protected void download(Call<List<T>> call) {
         call.enqueue(new Callback<List<T>>() {
             @Override
             public void onResponse(Call<List<T>> call, Response<List<T>> response) {
                 if (!response.isSuccessful() || response.body() == null)
-                    fail(type);
+                    fail("response unsuccessful or body null");
                 else if (response.body().size() == 0)
-                    empty(type);
+                    empty();
                 else
-                    onRetrieve.accept(response.body());
+                    onRetrieve(response.body());
             }
 
             @Override
             public void onFailure(Call<List<T>> call, Throwable t) {
-                fail(type + " - " + t.getMessage());
+                fail(t.getMessage());
             }
         });
     }
 
+    protected abstract void onRetrieve(List<T> items);
+
     private void fail(String msg) {
-        Log.d(tag, "Failed to get: " + msg);
+        Log.d(tag, "Failed to get: " + type + " - " + msg);
     }
 
-    private void empty(String msg) {
-        Log.d(tag, "Empty: " + msg);
+    private void empty() {
+        Log.d(tag, "Empty: " + type);
     }
 
     protected List<String> getAllEventKeys() {

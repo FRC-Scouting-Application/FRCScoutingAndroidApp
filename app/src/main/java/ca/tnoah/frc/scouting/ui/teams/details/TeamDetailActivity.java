@@ -1,22 +1,15 @@
 package ca.tnoah.frc.scouting.ui.teams.details;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -24,14 +17,9 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 import ca.tnoah.frc.scouting.R;
 import ca.tnoah.frc.scouting.helpers.DownloadImage;
-import ca.tnoah.frc.scouting.models.Team;
+import ca.tnoah.frc.scouting.models.dbo.Team;
 import ca.tnoah.frc.scouting.services.DatabaseService;
 import ca.tnoah.frc.scouting.services.localdb.AppDatabase;
 import ca.tnoah.frc.scouting.databinding.ActivityTeamDetailBinding;

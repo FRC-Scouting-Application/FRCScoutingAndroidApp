@@ -8,7 +8,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import ca.tnoah.frc.scouting.models.Match;
+import ca.tnoah.frc.scouting.models.dbo.Match;
 
 @Dao
 public interface MatchesDAO {

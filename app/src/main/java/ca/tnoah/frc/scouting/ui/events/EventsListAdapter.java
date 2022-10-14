@@ -15,8 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ca.tnoah.frc.scouting.R;
-import ca.tnoah.frc.scouting.models.Event;
-import ca.tnoah.frc.scouting.ui.teams.TeamsListAdapter;
+import ca.tnoah.frc.scouting.models.dbo.Event;
 
 public class EventsListAdapter extends ArrayAdapter<Event> {
     private static final String TAG = "==EventsListAdapter==";

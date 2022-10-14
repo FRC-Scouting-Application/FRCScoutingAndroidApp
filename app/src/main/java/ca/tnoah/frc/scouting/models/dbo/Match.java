@@ -1,4 +1,4 @@
-package ca.tnoah.frc.scouting.models;
+package ca.tnoah.frc.scouting.models.dbo;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

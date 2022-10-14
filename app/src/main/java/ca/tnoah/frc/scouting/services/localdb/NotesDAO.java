@@ -8,7 +8,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import ca.tnoah.frc.scouting.models.Note;
+import ca.tnoah.frc.scouting.models.dbo.Note;
 
 @Dao
 public interface NotesDAO {

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import ca.tnoah.frc.scouting.models.Team;
+import ca.tnoah.frc.scouting.models.dbo.Team;
 
 public class TeamViewModel extends ViewModel {
 

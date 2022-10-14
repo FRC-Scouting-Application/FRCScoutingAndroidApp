@@ -1,16 +1,18 @@
-package ca.tnoah.frc.scouting.models;
+package ca.tnoah.frc.scouting.models.dbo;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.UUID;
+
 @Entity(tableName = "notes")
 public class Note {
 
     @PrimaryKey
     @NotNull
-    public int id;
+    public UUID id;
 
     @NotNull
     public String teamKey;
