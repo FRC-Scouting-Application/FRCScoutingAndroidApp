@@ -102,6 +102,13 @@
 
     <string name="version">Version</string>
     <string name="auto">Auto</string>
+
+    <!-- Form -->
+    <string name="section_header">Section Header</string>
+    <string name="label">Label</string>
+    <string name="other">Other:</string>
+    <string name="option">Option</string>
+
     <!-- Unsorted -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

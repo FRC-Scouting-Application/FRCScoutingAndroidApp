@@ -38,7 +38,8 @@ android {
                     'src/main/res/layouts/share',
                     'src/main/res/layouts/sync',
                     'src/main/res/layouts/teams',
-                    'src/main/res/layouts/templates'
+                    'src/main/res/layouts/templates',
+                    'src/main/res/layouts/form'
             ]
         }
     }
