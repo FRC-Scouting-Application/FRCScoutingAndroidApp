@@ -109,6 +109,12 @@
     <string name="other">Other:</string>
     <string name="option">Option</string>
 
+    <!-- Counter -->
+    <string name="counter_subtract">Counter Decrement</string>
+    <string name="counter_add">Counter Increment</string>
+    <string name="counter_label">Counter</string>
+    <string name="counter_value">0</string>
+
     <!-- Unsorted -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

@@ -1,6 +1,7 @@
 package ca.tnoah.frc.scouting.models.template;
 
 import android.util.Log;
+import android.widget.TextView;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
