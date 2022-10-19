@@ -12,6 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <item name="cardBackgroundColor">@color/card_bg</item>
     </style>
 
     <style name="Theme.FRCScoutingApplication.NoActionBar">

@@ -27,6 +27,8 @@ public class Counter extends ConstraintLayout {
     private final AppCompatImageButton decrementButton;
 
     private int value = 0;
+    private int min = -1;
+    private int max = -1;
 
     public Counter(Context context) {
         this(context, null);

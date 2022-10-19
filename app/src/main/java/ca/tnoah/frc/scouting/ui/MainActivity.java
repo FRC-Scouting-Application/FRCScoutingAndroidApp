@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.SearchView;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
@@ -22,6 +21,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import ca.tnoah.frc.scouting.R;
 import ca.tnoah.frc.scouting.databinding.ActivityMainBinding;
+import ca.tnoah.frc.scouting.models.template.TemplateData;
+import ca.tnoah.frc.scouting.models.template.TemplateSerializer;
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, NavController.OnDestinationChangedListener {
 
