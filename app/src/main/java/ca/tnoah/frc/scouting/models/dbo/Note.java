@@ -4,6 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
@@ -20,7 +21,7 @@ public class Note {
     @NotNull
     public String eventKey;
 
-    @NotNull
+    @Nullable
     public String scoutName;
 
     @NotNull

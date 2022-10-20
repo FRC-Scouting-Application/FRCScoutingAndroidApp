@@ -108,6 +108,10 @@
     <string name="label">Label</string>
     <string name="other">Other:</string>
     <string name="option">Option</string>
+    <string name="template_not_found">Template Not Found!</string>
+    <string name="go_back">Go Back</string>
+    <string name="submit">Submit</string>
+    <string name="unable_to_save">Unable to save. Team/Event Missing</string>
 
     <!-- Counter -->
     <string name="counter_subtract">Counter Decrement</string>

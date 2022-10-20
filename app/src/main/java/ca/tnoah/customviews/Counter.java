@@ -27,8 +27,8 @@ public class Counter extends ConstraintLayout {
     private final AppCompatImageButton decrementButton;
 
     private int value = 0;
-    private int min = -1;
-    private int max = -1;
+    private Integer min;
+    private Integer max;
 
     public Counter(Context context) {
         this(context, null);
@@ -61,11 +61,11 @@ public class Counter extends ConstraintLayout {
         return view;
     }
 
-    public CharSequence getLabel() {
+    public CharSequence getText() {
         return labelTV.getText();
     }
 
-    public void setLabel(CharSequence text) {
+    public void setText(CharSequence text) {
         labelTV.setText(text);
     }
 
@@ -88,4 +88,19 @@ public class Counter extends ConstraintLayout {
         setValue(value);
     }
 
+    public Integer getMin() {
+        return min;
+    }
+
+    public void setMin(Integer min) {
+        this.min = min;
+    }
+
+    public Integer getMax() {
+        return max;
+    }
+
+    public void setMax(Integer max) {
+        this.max = max;
+    }
 }

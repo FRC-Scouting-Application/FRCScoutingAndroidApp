@@ -24,11 +24,13 @@ public class TemplateData {
 
         public static class Radio extends Field {
             public boolean other;
-            public List<Item> items;
+            public Integer selected;
+            public String otherValue;
+            public List<RadioItem> items;
         }
 
         public static class Checklist extends Field {
-            public List<Item> items;
+            public List<Checkbox> items;
         }
 
         public static class Counter extends Field {
@@ -42,8 +44,7 @@ public class TemplateData {
         }
     }
 
-    public static class Item {
+    public static class RadioItem {
         public String label;
-        public boolean checked;
     }
 }
