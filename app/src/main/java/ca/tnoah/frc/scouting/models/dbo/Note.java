@@ -21,7 +21,7 @@ public class Note {
     @NotNull
     public String eventKey;
 
-    @Nullable
+    @NotNull
     public String scoutName;
 
     @NotNull

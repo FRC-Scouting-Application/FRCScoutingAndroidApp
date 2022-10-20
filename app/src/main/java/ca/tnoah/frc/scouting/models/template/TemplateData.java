@@ -1,5 +1,7 @@
 package ca.tnoah.frc.scouting.models.template;
 
+import com.google.gson.annotations.Expose;
+
 import java.util.List;
 
 public class TemplateData {
@@ -14,7 +16,10 @@ public class TemplateData {
     }
 
     public static class Field {
+
+        @Expose
         public String type;
+
         public String label;
 
         public static class Text extends Field {

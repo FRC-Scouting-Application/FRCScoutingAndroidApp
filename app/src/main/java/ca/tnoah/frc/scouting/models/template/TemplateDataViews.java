@@ -2,8 +2,12 @@ package ca.tnoah.frc.scouting.models.template;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.text.InputType;
+import android.text.method.ScrollingMovementMethod;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -114,6 +118,18 @@ public class TemplateDataViews {
 
             value = view.findViewById(R.id.formTextFieldValue);
             value.setText(getData().value);
+
+            if (getData().multiline) {
+                value.setSingleLine(false);
+                value.setImeOptions(EditorInfo.IME_FLAG_NO_ENTER_ACTION);
+                value.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+                value.setLines(5);
+                value.setMaxLines(20);
+                value.setGravity(Gravity.TOP);
+                value.setVerticalScrollBarEnabled(true);
+                value.setMovementMethod(ScrollingMovementMethod.getInstance());
+                value.setScrollBarStyle(View.SCROLLBARS_INSIDE_INSET);
+            }
 
             return view;
         }

@@ -9,6 +9,10 @@ import java.util.Date;
 @Entity(tableName = "templates", primaryKeys = {"id", "version"})
 public class Template {
 
+    public enum Type {
+        PIT, MATCH, NOTES
+    }
+
     @NotNull
     public int id;
 
