@@ -10,11 +10,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import java.util.UUID;
 
 import ca.tnoah.frc.scouting.R;
 import ca.tnoah.frc.scouting.models.dbo.Note;
+import ca.tnoah.frc.scouting.models.dbo.Scout;
+import ca.tnoah.frc.scouting.models.dbo.Template;
 import ca.tnoah.frc.scouting.models.template.TemplateData;
 import ca.tnoah.frc.scouting.models.template.TemplateDataViews;
 import ca.tnoah.frc.scouting.models.template.TemplateSerializer;
@@ -24,57 +29,41 @@ import ca.tnoah.frc.scouting.services.localdb.AppDatabase;
 public class FormActivity extends AppCompatActivity {
 
     private static final String TAG = "==FormActivity==";
-
     private final AppDatabase db = DatabaseService.getInstance().getDB();
 
-    private TemplateData templateData;
     private TemplateDataViews templateDataViews;
+    private LinearLayout linearLayout;
 
-    public static final String TEMPLATE = "template";
-    public static final String TEMPLATE_FILE = "template_file";
+    private static final Gson gson = new Gson();
 
-    public static final String TEAM_KEY = "team_key";
-    public static final String EVENT_KEY = "event_key";
+    // Intent Params
+    private static final String INTENT_SCOUT = "intent_scout";
+    private static final String INTENT_TEMPLATE = "intent_template";
 
-    private String teamKey;
+    // Data
+    private Scout scout;
+
+    // Data from Scout
+    private TemplateData templateData;
     private String eventKey;
+    private String teamKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
 
-        LinearLayout linearLayout = findViewById(R.id.form_linear_layout);
-
-        Intent intent = getIntent();
-        String templateJSON = intent.getStringExtra(TEMPLATE);
-        String templateFile = intent.getStringExtra(TEMPLATE_FILE);
-        teamKey = intent.getStringExtra(TEAM_KEY);
-        eventKey = intent.getStringExtra(EVENT_KEY);
-
-        if (templateJSON != null)
-            templateData = TemplateSerializer.deserializeFromJson(templateJSON);
-        else if (templateFile != null)
-            templateData = TemplateSerializer.deserializeFromJson(this, templateFile);
-        else {
-            TextView textView = new TextView(this);
-            textView.setText(R.string.template_not_found);
-            linearLayout.addView(textView);
-
-            Button button = new Button(this);
-            button.setText(R.string.go_back);
-            button.setOnClickListener((l) -> finish());
-            linearLayout.addView(button);
-
+        if (!getIntentData()) {
+            finish();
             return;
         }
 
-        if (teamKey == null || eventKey == null) {
-            TextView textView = new TextView(this);
-            textView.setText(R.string.unable_to_save);
-            linearLayout.addView(textView);
-        }
+        linearLayout = findViewById(R.id.form_linear_layout);
 
+        createView();
+    }
+
+    private void createView() {
         templateDataViews = new TemplateDataViews(this, templateData);
         templateDataViews.generate(linearLayout);
 
@@ -88,62 +77,76 @@ public class FormActivity extends AppCompatActivity {
         templateData = templateDataViews.getTemplateData();
         Log.d(TAG, "Form Submitted");
 
-        if (eventKey == null || teamKey == null) {
-            saveToTestFile();
-            return;
-        }
-
-        if (templateData.type.equals("notes")) {
-            addNoteToDB();
-        } else if (templateData.type.equals("pit") || templateData.type.equals("match")) {
-            addScoutToDB();
-        } else {
-            TemplateSerializer.serializeToJson(templateData, this, "test.json");
-        }
+        scout.data = TemplateSerializer.serializeToJson(templateData);
+        scout.scoutName = scout.getScoutName();
+        db.scoutsDAO().insertOrUpdate(scout);
 
         finish();
     }
 
-    private void addScoutToDB() {
-        // TODO: Implement Scout to db
+    private boolean getIntentData() {
+        Intent intent = getIntent();
+
+        // Get the Scout from the intent
+        String json = intent.getStringExtra(INTENT_SCOUT);
+        if (json == null) {
+            String templateJson = intent.getStringExtra(INTENT_TEMPLATE);
+            Template template = gson.fromJson(templateJson, Template.class);
+
+            if (template == null || template.data == null)
+                return fail("Scout data invalid!");
+
+            templateData = TemplateSerializer.deserializeFromJson(template.data);
+            if (templateData == null) return fail("Template Data invalid!");
+            return true;
+        }
+
+        scout = gson.fromJson(json, Scout.class);
+
+        // Get Event and Team Key
+        eventKey = scout.eventKey;
+        teamKey = scout.teamKey;
+
+        // Check if data exists already
+        if (scout.data != null) {
+            templateData = TemplateSerializer.deserializeFromJson(scout.data);
+        } else {
+            Template template = db.templatesDAO().get(scout.templateId, scout.templateVersion);
+            if (template == null) return fail("Template invalid!");
+
+            templateData = TemplateSerializer.deserializeFromJson(template.data);
+        }
+
+        if (templateData == null) return fail("Template Data invalid!");
+
+        return true;
     }
 
-    private void addNoteToDB() {
-        Note note = new Note();
-        note.id = UUID.randomUUID();
-        note.eventKey = eventKey;
-        note.teamKey = teamKey;
-        note.scoutName = ((TemplateData.Field.Text) templateData.sections.get(0).fields.get(0)).value;
-        note.text = getSerializedTemplateData();
+    private boolean fail(String msg) {
+        Toast toast = Toast.makeText(this, msg, Toast.LENGTH_LONG);
+        toast.show();
+        Log.d(TAG, "FAIL: " + msg);
 
-        db.notesDAO().insertOrUpdate(note);
+        return false;
     }
 
-    private void saveToTestFile() {
-        TemplateSerializer.serializeToJson(templateData, this, "test.json");
-    }
-
-    private String getSerializedTemplateData() {
-        return TemplateSerializer.serializeToJson(templateData);
-    }
-
-    public static Intent createIntent(Context context, String json, String teamKey, String eventKey) {
+    public static Intent editFromExisting(Context context, Scout scout) {
         Intent intent = new Intent(context, FormActivity.class);
+        intent.putExtra(INTENT_SCOUT, gson.toJson(scout));
+        return intent;
+    }
 
-        intent.putExtra(TEMPLATE, json);
-        intent.putExtra(TEAM_KEY, teamKey);
-        intent.putExtra(EVENT_KEY, eventKey);
+    public static Intent editFromNew(Context context, String teamKey, String eventKey, Template template) {
+        Intent intent = new Intent(context, FormActivity.class);
+        Scout scout = new Scout(teamKey, eventKey, template);
+        intent.putExtra(INTENT_SCOUT, gson.toJson(scout));
 
         return intent;
     }
 
-    public static Intent createIntentFile(Context context, String file, String teamKey, String eventKey) {
+    public static Intent viewOnly(Context context, Template template) {
         Intent intent = new Intent(context, FormActivity.class);
-
-        intent.putExtra(TEMPLATE_FILE, file);
-        intent.putExtra(TEAM_KEY, teamKey);
-        intent.putExtra(EVENT_KEY, eventKey);
-
-        return intent;
+        intent.putExtra(INTENT_TEMPLATE, gson.toJson(template));
+        return  intent;
     }
 }

@@ -42,7 +42,7 @@ public class TeamsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_teams, container, false);
 
         MainViewModel viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
-        viewModel.getSearch().observe(this, this::onSearch);
+        viewModel.getSearch().observe(getViewLifecycleOwner(), this::onSearch);
 
         ListView listView = view.findViewById(R.id.teams_list);
         adapter = new TeamsListAdapter(getActivity(), db.teamsDAO().getAll());

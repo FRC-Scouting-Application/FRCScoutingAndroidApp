@@ -15,12 +15,12 @@ public class DownloadTeams extends DownloadBase<Team> implements Runnable {
 
     @Override
     public void run() {
-        Log.d(tag, "Download Teams Thread Started...");
+        logThreadStart();
 
         Call<List<Team>> call = api.teams.getAllTeams();
         download(call);
 
-        Log.d(tag, "Download Teams Thread Ended...");
+        logThreadEnd();
     }
 
     @Override

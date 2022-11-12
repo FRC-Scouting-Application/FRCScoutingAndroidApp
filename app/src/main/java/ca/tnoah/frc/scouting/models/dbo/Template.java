@@ -5,6 +5,7 @@ import androidx.room.Entity;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Entity(tableName = "templates", primaryKeys = {"id", "version"})
 public class Template {
@@ -14,7 +15,7 @@ public class Template {
     }
 
     @NotNull
-    public int id;
+    public String id;
 
     @NotNull
     public int version;
@@ -29,9 +30,6 @@ public class Template {
     public boolean defaultTemplate;
 
     @NotNull
-    public Date created;
-
-    @NotNull
-    public byte[] XML;
+    public String data;
 
 }

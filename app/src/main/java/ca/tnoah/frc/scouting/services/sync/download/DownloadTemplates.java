@@ -15,12 +15,12 @@ public class DownloadTemplates extends DownloadBase<Template> implements Runnabl
 
     @Override
     public void run() {
-        Log.d(tag, "Download Templates Thread Started...");
+        logThreadStart();
 
         Call<List<Template>> call = api.templates.getTemplates();
         download(call);
 
-        Log.d(tag, "Download Templates Thread Ended...");
+        logThreadEnd();
     }
 
     @Override

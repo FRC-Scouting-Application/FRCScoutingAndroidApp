@@ -58,6 +58,14 @@ public abstract class DownloadBase<T> {
         Log.d(tag, "Empty: " + type);
     }
 
+    protected void logThreadStart() {
+        Log.d(tag, "Download " + tag + " Thread Started...");
+    }
+
+    protected void logThreadEnd() {
+        Log.d(tag, "Download " + tag + " Thread Ended...");
+    }
+
     protected List<String> getAllEventKeys() {
         List<Event> events = db.eventsDAO().getAll();
 

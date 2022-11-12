@@ -80,7 +80,6 @@ public class TemplateSerializer {
 
     public static String serializeToJson(TemplateData templateData) {
         Gson gson = new GsonBuilder()
-                .setPrettyPrinting()
                 .create();
 
         return gson.toJson(templateData);

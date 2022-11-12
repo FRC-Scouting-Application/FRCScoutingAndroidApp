@@ -49,4 +49,11 @@ public abstract class UploadBase<T> {
         Log.d(tag, "Failed to upload: " + type + " - " + msg);
     }
 
+    protected void logThreadStart() {
+        Log.d(tag, "Download " + tag + " Thread Started...");
+    }
+
+    protected void logThreadEnd() {
+        Log.d(tag, "Download " + tag + " Thread Ended...");
+    }
 }

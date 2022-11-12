@@ -1,25 +1,23 @@
 package ca.tnoah.frc.scouting.services.sync.upload;
 
-import android.util.Log;
-
 import java.util.List;
 
-import ca.tnoah.frc.scouting.models.dbo.Note;
+import ca.tnoah.frc.scouting.models.dbo.Scout;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 
-public class UploadNotes extends UploadBase<Note> implements Runnable{
+public class UploadScouts extends UploadBase<Scout> implements Runnable {
 
-    public UploadNotes() {
-        super("Notes");
+    public UploadScouts() {
+        super("Scouts");
     }
 
     @Override
     public void run() {
         logThreadStart();
 
-        List<Note> notes = db.notesDAO().getAll();
-        Call<ResponseBody> call = api.notes.addNotes(notes);
+        List<Scout> scouts = db.scoutsDAO().getAll();
+        Call<ResponseBody> call = api.scouts.addScouts(scouts);
         upload(call);
 
         logThreadEnd();

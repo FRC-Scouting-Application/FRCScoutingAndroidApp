@@ -25,7 +25,7 @@ public interface ScoutsDAO {
     List<Scout> getAll(String type, String eventKey, String teamKey);
 
     @Query("SELECT * FROM scouts WHERE `id` = :id")
-    Scout get(int id);
+    Scout get(String id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertOrUpdate(Scout scout);

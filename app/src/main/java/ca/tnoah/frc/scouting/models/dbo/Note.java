@@ -13,7 +13,7 @@ public class Note {
 
     @PrimaryKey
     @NotNull
-    public UUID id;
+    public String id;
 
     @NotNull
     public String teamKey;

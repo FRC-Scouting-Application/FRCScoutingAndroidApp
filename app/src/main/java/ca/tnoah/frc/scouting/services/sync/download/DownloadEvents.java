@@ -15,12 +15,12 @@ public class DownloadEvents extends DownloadBase<Event> implements Runnable  {
 
     @Override
     public void run() {
-        Log.d(tag, "Download Events Thread Started...");
+        logThreadStart();
 
         Call<List<Event>> call = api.events.getEvents();
         download(call);
 
-        Log.d(tag, "Download Events Thread Ended...");
+        logThreadEnd();
     }
 
     @Override

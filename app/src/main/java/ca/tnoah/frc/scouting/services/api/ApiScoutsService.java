@@ -18,6 +18,9 @@ public interface ApiScoutsService {
     @GET("Scouts/Team/{team_key}")
     Call<List<Scout>> getScoutsByTeam(@Path("team_key") String teamKey);
 
+    @GET("Scouts")
+    Call<List<Scout>> getScouts();
+
     @POST("Scouts")
     Call<ResponseBody> addScouts(@Body List<Scout> notes);
 
