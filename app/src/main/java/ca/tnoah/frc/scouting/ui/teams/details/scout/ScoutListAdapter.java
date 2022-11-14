@@ -26,14 +26,20 @@ public class ScoutListAdapter extends ArrayAdapter<Scout> {
     private final String eventKey;
     private final String teamKey;
     private final String type;
+    private final boolean showDeleted;
 
-    public ScoutListAdapter(Activity context, String eventKey, String teamKey, String type) {
-        super(context, R.layout.list_item, getScoutsFromDB(eventKey, teamKey, type));
+    public ScoutListAdapter(Activity context, String eventKey, String teamKey, String type, boolean showDeleted) {
+        super(context, R.layout.list_item, getScoutsFromDB(eventKey, teamKey, type, showDeleted));
 
         this.context = context;
         this.eventKey = eventKey;
         this.teamKey = teamKey;
         this.type = type;
+        this.showDeleted = showDeleted;
+    }
+
+    public ScoutListAdapter(Activity context, String eventKey, String teamKey, String type) {
+        this(context, eventKey, teamKey, type, false);
     }
 
     @NonNull
@@ -72,19 +78,23 @@ public class ScoutListAdapter extends ArrayAdapter<Scout> {
         return rowView;
     }
 
-    private static List<Scout> getScoutsFromDB(String eventKey, String teamKey, String type) {
+    private static List<Scout> getScoutsFromDB(String eventKey, String teamKey, String type, boolean showDeleted) {
         AppDatabase db = DatabaseService.getInstance().getDB();
-        List<Scout> scouts = db.scoutsDAO().getAll(type, eventKey, teamKey);
+        List<Scout> scouts;
+
+        if (showDeleted)
+            scouts = db.scoutsDAO().getAllIncludingDeleted(type, eventKey, teamKey);
+        else
+            scouts = db.scoutsDAO().getAll(type, eventKey, teamKey);
 
         if (scouts == null)
             scouts = new ArrayList<>();
-
 
         return scouts;
     }
 
     public void updateList() {
-        List<Scout> scouts = getScoutsFromDB(eventKey, teamKey, type);
+        List<Scout> scouts = getScoutsFromDB(eventKey, teamKey, type, showDeleted);
 
         clear();
         addAll(scouts);

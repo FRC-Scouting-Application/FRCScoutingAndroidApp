@@ -1,24 +1,25 @@
 package ca.tnoah.frc.scouting.ui.form;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-import java.util.UUID;
-
 import ca.tnoah.frc.scouting.R;
-import ca.tnoah.frc.scouting.models.dbo.Note;
+import ca.tnoah.frc.scouting.databinding.ActivityFormBinding;
 import ca.tnoah.frc.scouting.models.dbo.Scout;
+import ca.tnoah.frc.scouting.models.dbo.Team;
 import ca.tnoah.frc.scouting.models.dbo.Template;
 import ca.tnoah.frc.scouting.models.template.TemplateData;
 import ca.tnoah.frc.scouting.models.template.TemplateDataViews;
@@ -39,28 +40,71 @@ public class FormActivity extends AppCompatActivity {
     // Intent Params
     private static final String INTENT_SCOUT = "intent_scout";
     private static final String INTENT_TEMPLATE = "intent_template";
+    private static final String INTENT_NEW_SCOUT = "intent_new_scout";
 
     // Data
     private Scout scout;
+    private boolean newScout;
 
     // Data from Scout
     private TemplateData templateData;
-    private String eventKey;
-    private String teamKey;
+
+    private ActivityFormBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_form);
+
+        binding = ActivityFormBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         if (!getIntentData()) {
             finish();
             return;
         }
 
-        linearLayout = findViewById(R.id.form_linear_layout);
+        setSupportActionBar(binding.appBarForm.formToolbar);
 
+        linearLayout = findViewById(R.id.form_linear_layout);
         createView();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.form_menu, menu);
+
+        Team team = db.teamsDAO().get(scout.teamKey);
+        if (team == null) {
+            finish();
+            return false;
+        }
+        setTitle(team.nickname);
+
+        MenuItem delete = menu.findItem(R.id.action_delete);
+        delete.setOnMenuItemClickListener(item -> {
+            delete();
+            return true;
+        });
+
+        return true;
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
+
+    private void delete() {
+        if (!newScout) {
+            scout.deleted = true;
+            save();
+        }
+
+        Toast toast = Toast.makeText(this, R.string.successful_delete, Toast.LENGTH_SHORT);
+        toast.show();
+
+        finish();
     }
 
     private void createView() {
@@ -79,13 +123,19 @@ public class FormActivity extends AppCompatActivity {
 
         scout.data = TemplateSerializer.serializeToJson(templateData);
         scout.scoutName = scout.getScoutName();
-        db.scoutsDAO().insertOrUpdate(scout);
+        save();
 
         finish();
     }
 
+    private void save() {
+        db.scoutsDAO().insertOrUpdate(scout);
+    }
+
     private boolean getIntentData() {
         Intent intent = getIntent();
+
+        newScout = intent.getBooleanExtra(INTENT_NEW_SCOUT, true);
 
         // Get the Scout from the intent
         String json = intent.getStringExtra(INTENT_SCOUT);
@@ -102,10 +152,6 @@ public class FormActivity extends AppCompatActivity {
         }
 
         scout = gson.fromJson(json, Scout.class);
-
-        // Get Event and Team Key
-        eventKey = scout.eventKey;
-        teamKey = scout.teamKey;
 
         // Check if data exists already
         if (scout.data != null) {
@@ -133,6 +179,7 @@ public class FormActivity extends AppCompatActivity {
     public static Intent editFromExisting(Context context, Scout scout) {
         Intent intent = new Intent(context, FormActivity.class);
         intent.putExtra(INTENT_SCOUT, gson.toJson(scout));
+        intent.putExtra(INTENT_NEW_SCOUT, false);
         return intent;
     }
 
@@ -140,6 +187,7 @@ public class FormActivity extends AppCompatActivity {
         Intent intent = new Intent(context, FormActivity.class);
         Scout scout = new Scout(teamKey, eventKey, template);
         intent.putExtra(INTENT_SCOUT, gson.toJson(scout));
+        intent.putExtra(INTENT_NEW_SCOUT, true);
 
         return intent;
     }

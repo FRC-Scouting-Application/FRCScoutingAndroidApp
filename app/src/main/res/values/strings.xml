@@ -11,6 +11,7 @@
     <string name="menu_templates">Templates</string>
     <string name="menu_settings">Settings</string>
     <string name="search">Search</string>
+    <string name="delete">Delete</string>
 
     <!-- List Items -->
     <string name="title">Title</string>
@@ -119,6 +120,8 @@
     <string name="go_back">Go Back</string>
     <string name="submit">Submit</string>
     <string name="unable_to_save">Unable to save. Team/Event Missing</string>
+    <string name="successful_delete">Successfully Deleted Scout!</string>
+    <string name="failed_to_open_scout">Failed to open Scout!</string>
 
     <!-- Counter -->
     <string name="counter_subtract">Counter Decrement</string>

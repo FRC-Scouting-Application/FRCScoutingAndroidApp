@@ -43,6 +43,9 @@ public class Scout {
     @Nullable
     public String data;
 
+    @NotNull
+    public boolean deleted;
+
     public Scout() {
 
     }

@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import ca.tnoah.frc.scouting.R;
+import ca.tnoah.frc.scouting.models.dbo.Scout;
 import ca.tnoah.frc.scouting.models.dbo.Team;
 import ca.tnoah.frc.scouting.models.dbo.Template;
 import ca.tnoah.frc.scouting.services.DatabaseService;
@@ -75,9 +76,16 @@ public abstract class ScoutFragment extends Fragment {
     }
 
     private void onItemClicked(AdapterView<?> parent, View view, int position, long id) {
-        /*Note note = (Note) parent.getItemAtPosition(position);
-        Intent switchToForm = FormActivity.createIntent(getActivity(), note);
-        startActivity(switchToForm);*/
+        Scout scout = (Scout) parent.getItemAtPosition(position);
+
+        if (scout == null) {
+            Toast toast = Toast.makeText(getContext(), R.string.failed_to_open_scout, Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
+
+        Intent switchToForm = FormActivity.editFromExisting(getContext(), scout);
+        startActivity(switchToForm);
     }
 
     private void onAddClicked(View view) {

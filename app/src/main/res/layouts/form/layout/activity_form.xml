@@ -7,31 +7,47 @@
     android:layout_height="match_parent"
     tools:context=".ui.form.FormActivity">
 
-  <TextView
-      android:id="@+id/text_form"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="8dp"
-      android:text="Form"
+  <LinearLayout
+      android:id="@+id/linearLayout5"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      android:orientation="vertical"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent">
+
+    <include
+        layout="@layout/team_detail_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="1">
+
+      <LinearLayout
+          android:id="@+id/form_linear_layout"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical" />
+    </ScrollView>
+
+  </LinearLayout>
+
+  <include
+      android:id="@+id/appBarForm"
+      layout="@layout/app_bar_form"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      android:layout_weight="3"
+      app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
-  <ScrollView
-      android:layout_width="0dp"
-      android:layout_height="0dp"
-      android:layout_marginStart="8dp"
-      android:layout_marginTop="8dp"
-      android:layout_marginEnd="8dp"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/text_form">
-
-    <LinearLayout
-        android:id="@+id/form_linear_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" />
-  </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

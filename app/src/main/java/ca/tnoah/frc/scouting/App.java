@@ -28,7 +28,7 @@ public class App extends Application {
         context = this;
 
         SyncService.getInstance(context);
-        startUpTest();
+        //startUpTest();
     }
 
     public static Context getContext() {
