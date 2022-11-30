@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_SCAN"
+        android:usesPermissionFlags="neverForLocation" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-feature
+        android:name="android.hardware.bluetooth"
+        android:required="true" />
 
     <application
         android:name=".App"
@@ -11,6 +24,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FRCScoutingApplication">
+        <activity
+            android:name=".ui.share.client.BluetoothClient"
+            android:exported="false"
+            android:label="@string/bt_client"
+            />
+        <activity
+            android:name=".ui.share.server.BluetoothServer"
+            android:exported="false"
+            android:label="@string/bt_server"
+            />
         <activity
             android:name=".ui.teams.details.TeamDetailActivity"
             android:exported="false"
@@ -23,8 +46,7 @@
         <activity
             android:name=".ui.form.FormActivity"
             android:exported="false"
-            android:theme="@style/Theme.FRCScoutingApplication.NoActionBar"
-            />
+            android:theme="@style/Theme.FRCScoutingApplication.NoActionBar" />
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"

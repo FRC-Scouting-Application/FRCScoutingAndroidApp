@@ -6,12 +6,14 @@ import android.content.Context;
 import android.util.Log;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
 import ca.tnoah.frc.scouting.models.dbo.Scout;
 import ca.tnoah.frc.scouting.models.dbo.Template;
 import ca.tnoah.frc.scouting.services.DatabaseService;
+import ca.tnoah.frc.scouting.services.bluetooth.DataPackage;
 import ca.tnoah.frc.scouting.services.localdb.AppDatabase;
 import ca.tnoah.frc.scouting.services.sync.SyncService;
 
@@ -28,7 +30,7 @@ public class App extends Application {
         context = this;
 
         SyncService.getInstance(context);
-        //startUpTest();
+        startUpTest();
     }
 
     public static Context getContext() {
@@ -38,8 +40,14 @@ public class App extends Application {
     public void startUpTest() {
         Log.d(TAG, "Startup Test Start!");
 
-        List<Scout> scouts =  DatabaseService.getInstance().getDB().scoutsDAO().getAll();
-        List<Scout> scouts1 = DatabaseService.getInstance().getDB().scoutsDAO().getAll("notes", "2022on325", "frc1");
+        try {
+            DataPackage dp = DataPackage.createFromDB();
+            byte[] data = dp.packageDataBytes();
+
+            Log.d(TAG, "Hi");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         Log.d(TAG, "Startup Test End!");
     }
