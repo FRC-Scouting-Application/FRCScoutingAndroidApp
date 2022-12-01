@@ -4,9 +4,13 @@ import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothDevice;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,9 +41,26 @@ public class BluetoothClient extends Bluetooth {
 
         ListView listView = (ListView) findViewById(R.id.btConnectDeviceList);
         adapter = new BluetoothClientListAdapter(this);
+
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this::onItemClick);
+
+        findViewById(R.id.sendMsg).setOnClickListener((v) -> {
+            sendData("Hello World!".getBytes(StandardCharsets.UTF_8));
+        });
 
         discover();
     }
 
+    private void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+        BluetoothDevice device = adapter.getItem(position).getDevice();
+
+        if (device == null) {
+            Toast toast = Toast.makeText(this, "Failed to get device!", Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
+
+        connect(device);
+    }
 }

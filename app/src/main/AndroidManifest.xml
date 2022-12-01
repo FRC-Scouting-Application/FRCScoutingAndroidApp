@@ -28,32 +28,46 @@
             android:name=".ui.share.client.BluetoothClient"
             android:exported="false"
             android:label="@string/bt_client"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             />
         <activity
             android:name=".ui.share.server.BluetoothServer"
             android:exported="false"
             android:label="@string/bt_server"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             />
         <activity
             android:name=".ui.teams.details.TeamDetailActivity"
             android:exported="false"
             android:label="@string/title_activity_team_detail"
-            android:theme="@style/Theme.FRCScoutingApplication.NoActionBar" />
+            android:theme="@style/Theme.FRCScoutingApplication.NoActionBar"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            />
         <activity
             android:name=".ui.events.EventDetailActivity"
             android:exported="false"
-            android:theme="@style/Theme.FRCScoutingApplication.NoActionBar" />
+            android:theme="@style/Theme.FRCScoutingApplication.NoActionBar"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            />
         <activity
             android:name=".ui.form.FormActivity"
             android:exported="false"
-            android:theme="@style/Theme.FRCScoutingApplication.NoActionBar" />
+            android:theme="@style/Theme.FRCScoutingApplication.NoActionBar"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.FRCScoutingApplication.NoActionBar">
+            android:theme="@style/Theme.FRCScoutingApplication.NoActionBar"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
