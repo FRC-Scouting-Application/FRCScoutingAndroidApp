@@ -2,7 +2,7 @@ package ca.tnoah.frc.scouting.services.api;
 
 import java.util.List;
 
-import ca.tnoah.frc.scouting.models.Scout;
+import ca.tnoah.frc.scouting.models.dbo.Scout;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -17,6 +17,9 @@ public interface ApiScoutsService {
 
     @GET("Scouts/Team/{team_key}")
     Call<List<Scout>> getScoutsByTeam(@Path("team_key") String teamKey);
+
+    @GET("Scouts")
+    Call<List<Scout>> getScouts();
 
     @POST("Scouts")
     Call<ResponseBody> addScouts(@Body List<Scout> notes);

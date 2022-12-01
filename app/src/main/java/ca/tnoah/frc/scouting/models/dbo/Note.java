@@ -1,16 +1,19 @@
-package ca.tnoah.frc.scouting.models;
+package ca.tnoah.frc.scouting.models.dbo;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-@Entity(tableName = "scouts")
-public class Scout {
+import java.util.UUID;
+
+@Entity(tableName = "notes")
+public class Note {
 
     @PrimaryKey
     @NotNull
-    public int id;
+    public String id;
 
     @NotNull
     public String teamKey;
@@ -22,15 +25,6 @@ public class Scout {
     public String scoutName;
 
     @NotNull
-    public int templateId;
-
-    @NotNull
-    public int templateVersion;
-
-    @NotNull
-    public String matchKey;
-
-    @NotNull
-    public byte[] XML;
+    public String text;
 
 }

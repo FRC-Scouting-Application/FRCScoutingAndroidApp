@@ -11,6 +11,7 @@
     <string name="menu_templates">Templates</string>
     <string name="menu_settings">Settings</string>
     <string name="search">Search</string>
+    <string name="delete">Delete</string>
 
     <!-- List Items -->
     <string name="title">Title</string>
@@ -50,11 +51,15 @@
 
     <!-- Sync -->
     <string name="sync_now">Sync Now</string>
+    <string name="syncing">Syncing</string>
+    <string name="last_sync">Last Sync: %s</string>
+    <string name="never_synced">Never Synced</string>
 
     <!-- Settings -->
     <string name="user_interface">User Interface</string>
     <string name="general">General</string>
     <string name="about">About</string>
+    <string name="developer">Developer</string>
 
     <string name="night_mode">Night Mode</string>
     <string-array name="night_mode_options">
@@ -102,6 +107,28 @@
 
     <string name="version">Version</string>
     <string name="auto">Auto</string>
+
+    <string name="clear_all_data">Reset Database</string>
+    <string name="clear_all_data_desc">Clears and remakes local database.</string>
+
+    <!-- Form -->
+    <string name="section_header">Section Header</string>
+    <string name="label">Label</string>
+    <string name="other">Other:</string>
+    <string name="option">Option</string>
+    <string name="template_not_found">Template Not Found!</string>
+    <string name="go_back">Go Back</string>
+    <string name="submit">Submit</string>
+    <string name="unable_to_save">Unable to save. Team/Event Missing</string>
+    <string name="successful_delete">Successfully Deleted Scout!</string>
+    <string name="failed_to_open_scout">Failed to open Scout!</string>
+
+    <!-- Counter -->
+    <string name="counter_subtract">Counter Decrement</string>
+    <string name="counter_add">Counter Increment</string>
+    <string name="counter_label">Counter</string>
+    <string name="counter_value">0</string>
+
     <!-- Unsorted -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

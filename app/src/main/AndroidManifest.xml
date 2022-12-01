@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ca.tnoah.frc.scouting">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_SCAN"
+        android:usesPermissionFlags="neverForLocation" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-feature
+        android:name="android.hardware.bluetooth"
+        android:required="true" />
 
     <application
         android:name=".App"
@@ -13,23 +25,49 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FRCScoutingApplication">
         <activity
+            android:name=".ui.share.client.BluetoothClient"
+            android:exported="false"
+            android:label="@string/bt_client"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            />
+        <activity
+            android:name=".ui.share.server.BluetoothServer"
+            android:exported="false"
+            android:label="@string/bt_server"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            />
+        <activity
             android:name=".ui.teams.details.TeamDetailActivity"
             android:exported="false"
             android:label="@string/title_activity_team_detail"
-            android:theme="@style/Theme.FRCScoutingApplication.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.FRCScoutingApplication.NoActionBar"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            />
         <activity
             android:name=".ui.events.EventDetailActivity"
             android:exported="false"
-            android:theme="@style/Theme.FRCScoutingApplication.NoActionBar"/>
+            android:theme="@style/Theme.FRCScoutingApplication.NoActionBar"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            />
+        <activity
+            android:name=".ui.form.FormActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FRCScoutingApplication.NoActionBar"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.FRCScoutingApplication.NoActionBar">
+            android:theme="@style/Theme.FRCScoutingApplication.NoActionBar"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

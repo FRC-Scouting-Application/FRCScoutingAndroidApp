@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Shared -->
+    <string name="bt_server">Server</string>
+    <string name="bt_client">Client</string>
+    <string name="bt_title">You are the %s</string>
+    <string name="bt_device_name">Device Name</string>
+    <string name="bt_passphrase">Passphrase</string>
+    <string name="bt_sync_progress">Sync Progress</string>
+
+    <!-- Main Page -->
+    <string name="bt_main_title">Share and sync data over Bluetooth</string>
+    <string name="bt_main_step_1">1. Please enter a passphrase that will be the same on both of your devices. This will verify that both of your devices are from the same team, and are trusted</string>
+    <string name="bt_main_step_2">2. Then choose between the two options bellow. The phone that is connected to the internet through mobile data will be the server, and the other will context to the server.</string>
+    <string name="bt_host_server">Host Server</string>
+    <string name="bt_connect_to_server">Connect to Server</string>
+    <string name="bt_invalid_passphrase">Passphrase is invalid! Please try again.</string>
+
+    <!-- Client -->
+    <string name="bt_client_subtitle">Connect to the other device with the information on the server phone. Make sure that the passphrases match.</string>
+    <string name="bt_connect_to_device">Connect to a device:</string>
+
+    <!-- Server -->
+    <string name="bt_server_subtitle">Other devices will connect to you with this information:</string>
+    <string name="bt_device_name_field"><b>Device Name:</b> %s</string>
+    <string name="bt_passphrase_field"><b>Passphrase:</b> %s</string>
+    <string name="bt_devices_connected">Scouting Devices Connected:</string>
+
+    <!-- Status -->
+    <string name="bt_status">Status: %s</string>
+    <string name="bt_connecting">Connecting</string>
+    <string name="bt_connected">Connected</string>
+    <string name="bt_not_connected">Not Connected</string>
+    <string name="bt_connection_failed">Connection Failed</string>
+    <string name="bt_enabled">Bluetooth Enabled</string>
+    <string name="bt_disabled">Bluetooth Disabled</string>
+
+    <!-- Bluetooth Sync Progresses -->>
+    <string name="bt_sync_not_connected">Not Connected</string>
+    <string name="bt_sync_connecting">Connecting</string>
+    <string name="bt_sync_syncing">Syncing</string>
+    <string name="bt_sync_finished">Finished</string>
+    <string name="bt_sync_fail">Failed</string>
+
+    <!-- General Buttons -->
+    <string name="bt_scan_for_devices">Scan For Devices</string>
+    <string name="bt_make_discoverable">Make Discoverable</string>
+
+</resources>

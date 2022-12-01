@@ -8,7 +8,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import ca.tnoah.frc.scouting.models.Scout;
+import ca.tnoah.frc.scouting.models.dbo.Scout;
 
 @Dao
 public interface ScoutsDAO {
@@ -20,12 +20,20 @@ public interface ScoutsDAO {
             "JOIN templates ON scouts.templateId = templates.id " +
             "AND scouts.templateVersion = templates.version " +
             "WHERE templates.type = :type AND scouts.eventKey = :eventKey " +
-            "AND scouts.teamKey = :teamKey " +
+            "AND scouts.teamKey = :teamKey AND deleted = 0 " +
             "ORDER BY `scoutName` ASC")
     List<Scout> getAll(String type, String eventKey, String teamKey);
 
+    @Query("SELECT * FROM scouts " +
+            "JOIN templates ON scouts.templateId = templates.id " +
+            "AND scouts.templateVersion = templates.version " +
+            "WHERE templates.type = :type AND scouts.eventKey = :eventKey " +
+            "AND scouts.teamKey = :teamKey " +
+            "ORDER BY `scoutName` ASC")
+    List<Scout> getAllIncludingDeleted(String type, String eventKey, String teamKey);
+
     @Query("SELECT * FROM scouts WHERE `id` = :id")
-    Scout get(int id);
+    Scout get(String id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertOrUpdate(Scout scout);

@@ -3,7 +3,6 @@ package ca.tnoah.frc.scouting.ui.teams.details.team;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.util.Log;
@@ -15,8 +14,7 @@ import android.widget.TextView;
 import java.util.Locale;
 
 import ca.tnoah.frc.scouting.R;
-import ca.tnoah.frc.scouting.models.Team;
-import ca.tnoah.frc.scouting.ui.teams.details.TeamDetailActivity;
+import ca.tnoah.frc.scouting.models.dbo.Team;
 import ca.tnoah.frc.scouting.ui.teams.details.TeamViewModel;
 
 public class TeamFragment extends Fragment {
@@ -37,7 +35,7 @@ public class TeamFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_team, container, false);
 
         TeamViewModel viewModel = new ViewModelProvider(requireActivity()).get(TeamViewModel.class);
-        viewModel.getTeam().observe(this, this::onTeamChanged);
+        viewModel.getTeam().observe(getViewLifecycleOwner(), this::onTeamChanged);
 
         return view;
     }

@@ -1,17 +1,21 @@
-package ca.tnoah.frc.scouting.models;
+package ca.tnoah.frc.scouting.models.dbo;
 
 import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Entity(tableName = "templates", primaryKeys = {"id", "version"})
 public class Template {
 
+    public enum Type {
+        PIT, MATCH, NOTES
+    }
+
     @NotNull
-    public int id;
+    public String id;
 
     @NotNull
     public int version;
@@ -26,9 +30,6 @@ public class Template {
     public boolean defaultTemplate;
 
     @NotNull
-    public Date created;
-
-    @NotNull
-    public byte[] XML;
+    public String data;
 
 }

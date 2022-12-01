@@ -16,8 +16,7 @@ import java.util.List;
 import java.util.Locale;
 
 import ca.tnoah.frc.scouting.R;
-import ca.tnoah.frc.scouting.models.Event;
-import ca.tnoah.frc.scouting.models.Note;
+import ca.tnoah.frc.scouting.models.dbo.Note;
 import ca.tnoah.frc.scouting.services.DatabaseService;
 import ca.tnoah.frc.scouting.services.localdb.AppDatabase;
 

@@ -8,7 +8,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import ca.tnoah.frc.scouting.models.Note;
+import ca.tnoah.frc.scouting.models.dbo.Note;
 
 @Dao
 public interface NotesDAO {
@@ -21,7 +21,7 @@ public interface NotesDAO {
     List<Note> getAll(String eventKey, String teamKey);
 
     @Query("SELECT * FROM notes WHERE `id` = :id")
-    Note get(int id);
+    Note get(String id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertOrUpdate(Note note);

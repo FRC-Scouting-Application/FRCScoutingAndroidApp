@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Scout name="Test Template" type="Pit" year="2020">
+    <Section>
+        <Header>Scout Info</Header>
+        <Fields>
+            <TextField label="Scout Name" />
+            <TextField label="Title" />
+        </Fields>
+    </Section>
+    <Section>
+        <Header>Notes</Header>
+        <Fields>
+            <TextField label="Notes" multiline="true" />
+        </Fields>
+    </Section>
+</Scout>

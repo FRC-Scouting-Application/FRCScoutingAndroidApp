@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import ca.tnoah.frc.scouting.R;
-import ca.tnoah.frc.scouting.models.Event;
+import ca.tnoah.frc.scouting.models.dbo.Event;
 import ca.tnoah.frc.scouting.services.DatabaseService;
 import ca.tnoah.frc.scouting.services.localdb.AppDatabase;
 

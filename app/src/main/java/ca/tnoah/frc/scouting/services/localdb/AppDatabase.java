@@ -4,7 +4,12 @@ import androidx.room.Database;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-import ca.tnoah.frc.scouting.models.*;
+import ca.tnoah.frc.scouting.models.dbo.Event;
+import ca.tnoah.frc.scouting.models.dbo.Match;
+import ca.tnoah.frc.scouting.models.dbo.Note;
+import ca.tnoah.frc.scouting.models.dbo.Scout;
+import ca.tnoah.frc.scouting.models.dbo.Team;
+import ca.tnoah.frc.scouting.models.dbo.Template;
 
 @Database(entities = {Event.class, Match.class, Note.class, Scout.class, Team.class, Template.class}, version = 1)
 @TypeConverters({Converters.class})

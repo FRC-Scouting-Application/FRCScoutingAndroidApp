@@ -1,16 +1,18 @@
 package ca.tnoah.frc.scouting.ui;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.SearchView;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -20,10 +22,14 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.jetbrains.annotations.NotNull;
+
+import ca.tnoah.frc.scouting.Perms;
 import ca.tnoah.frc.scouting.R;
 import ca.tnoah.frc.scouting.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, NavController.OnDestinationChangedListener {
+    private static final String TAG = "==MainActivity==";
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
@@ -40,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         initNav();
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
+
+        Perms.requestAllStartup(this);
     }
 
     private void initNav() {

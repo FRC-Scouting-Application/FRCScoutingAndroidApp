@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Scout name="Test Template" type="Pit" year="2020">
+    <Section>
+        <Header>Scout Info</Header>
+        <Fields>
+            <TextField label="Scout Name" />
+            <TextField label="Match Number" />
+        </Fields>
+    </Section>
+    <Section>
+        <Header>Drivetrain</Header>
+        <Fields>
+            <RadioList label="Drivetrain Type" other="true">
+                <Item label="4 Wheel Tank" />
+                <Item label="6 Wheel Tank" />
+                <Item label="Mecanum" />
+                <Item label="Swerve" />
+            </RadioList>
+        </Fields>
+    </Section>
+    <Section>
+        <Header>Auto</Header>
+        <Fields>
+            <CheckList label="Ports during auto">
+                <Item label="Lower" />
+                <Item label="High" />
+                <Item label="Inner" />
+            </CheckList>
+            <Counter label="Cells robot start with?" max="5" />
+            <Checkbox label="Cross the baseline?" />
+            <TextField label="Robot Weight" />
+        </Fields>
+    </Section>
+</Scout>

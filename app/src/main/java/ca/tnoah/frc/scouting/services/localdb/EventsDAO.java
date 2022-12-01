@@ -8,7 +8,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import ca.tnoah.frc.scouting.models.Event;
+import ca.tnoah.frc.scouting.models.dbo.Event;
 
 @Dao
 public interface EventsDAO {
@@ -16,8 +16,8 @@ public interface EventsDAO {
     @Query("SELECT * FROM events ORDER BY `startDate` ASC")
     List<Event> getAll();
 
-    @Query("SELECT * FROM events WHERE `key` = :key")
-    Event get(String key);
+    @Query("SELECT * FROM events WHERE `id` = :id")
+    Event get(String id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertOrUpdate(Event event);

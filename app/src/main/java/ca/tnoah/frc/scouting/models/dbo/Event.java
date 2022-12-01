@@ -1,4 +1,4 @@
-package ca.tnoah.frc.scouting.models;
+package ca.tnoah.frc.scouting.models.dbo;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -18,7 +18,7 @@ public class Event {
 
     @PrimaryKey
     @NotNull
-    public String key;
+    public String id;
 
     @NotNull
     public String name;
