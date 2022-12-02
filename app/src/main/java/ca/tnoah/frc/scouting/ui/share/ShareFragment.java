@@ -60,7 +60,7 @@ public class ShareFragment extends Fragment {
         if (pass == null) return;
 
         Intent startServer = new Intent(getContext(), BluetoothServer.class);
-        startServer.putExtra(Bluetooth.INTENT_PASSPHRASE, pass);
+        startServer.putExtra(BluetoothActivityBase.INTENT_PASSPHRASE, pass);
         startActivity(startServer);
     }
 
@@ -69,7 +69,7 @@ public class ShareFragment extends Fragment {
         if (pass == null) return;
 
         Intent startClient = new Intent(getContext(), BluetoothClient.class);
-        startClient.putExtra(Bluetooth.INTENT_PASSPHRASE, pass);
+        startClient.putExtra(BluetoothActivityBase.INTENT_PASSPHRASE, pass);
         startActivity(startClient);
     }
 
