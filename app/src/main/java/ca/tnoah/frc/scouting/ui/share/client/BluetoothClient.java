@@ -46,7 +46,7 @@ public class BluetoothClient extends Bluetooth {
         listView.setOnItemClickListener(this::onItemClick);
 
         findViewById(R.id.sendMsg).setOnClickListener((v) -> {
-            sendData("Hello World!".getBytes(StandardCharsets.UTF_8));
+            sendCurrentData();
         });
 
         discover();

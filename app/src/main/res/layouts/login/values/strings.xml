@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="login_title">FRC Scouting</string>
+
+    <string name="login_welcome">Welcome!</string>
+    <string name="login_get_started">Let\'s get started. How will you be using this app?</string>
+
+    <string name="login_standalone">Standalone</string>
+    <string name="login_with_team">With a Team</string>
+    <string name="login_custom">Custom Setup</string>
+    <string name="login_or">- OR -</string>
+
+    <string name="login_continue">Continue</string>
+
+    <string name="login_server_address">Server Address</string>
+    <string name="login_team_number">Team Number</string>
+    <string name="login_team_password">Team Password</string>
+
+</resources>

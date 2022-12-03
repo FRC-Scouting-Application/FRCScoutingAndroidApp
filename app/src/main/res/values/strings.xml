@@ -17,11 +17,6 @@
     <string name="title">Title</string>
     <string name="subtitle">Subtitle</string>
 
-    <!-- Login -->
-    <string name="standalone">Standalone</string>
-    <string name="with_a_team">With a Team</string>
-    <string name="custom_setup">Custom Setup</string>
-
     <!-- Events -->
     <string name="event_name">Event Name</string>
     <string name="event_type">Event</string>

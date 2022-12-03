@@ -16,6 +16,9 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import java.util.List;
+import java.util.UUID;
+
 import ca.tnoah.frc.scouting.R;
 import ca.tnoah.frc.scouting.databinding.ActivityFormBinding;
 import ca.tnoah.frc.scouting.models.dbo.Scout;
@@ -123,6 +126,12 @@ public class FormActivity extends AppCompatActivity {
 
         scout.data = TemplateSerializer.serializeToJson(templateData);
         scout.scoutName = scout.getScoutName();
+
+        if (scout.id.equals("notes-example"))
+            scout.id = String.valueOf(UUID.randomUUID());
+
+
+        db.scoutsDAO().insertOrUpdate(scout);
         save();
 
         finish();

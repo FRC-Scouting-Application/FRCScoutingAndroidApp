@@ -31,6 +31,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -262,7 +264,15 @@ public class Bluetooth extends AppCompatActivity {
         }
 
         if (data.length > 0) {
-            mBluetoothService.write(data);
+            int subArraySize = 1024;
+
+            byte[] bytes = String.valueOf(data.length).getBytes(StandardCharsets.UTF_8);
+            mBluetoothService.write(bytes);
+
+            /*for (int i = 0; i < data.length; i+= subArraySize) {
+                byte[] temp = Arrays.copyOfRange(data, i, Math.min(data.length, i+subArraySize));
+                mBluetoothService.write(temp);
+            }*/
         }
     }
 
