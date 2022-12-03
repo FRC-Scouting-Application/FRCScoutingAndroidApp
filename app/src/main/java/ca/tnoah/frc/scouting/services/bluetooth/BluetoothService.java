@@ -18,8 +18,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.Scanner;
 
 public class BluetoothService {
     private static final String TAG = "==BluetoothService==";
@@ -316,7 +314,8 @@ public class BluetoothService {
         private final BluetoothSocket socket;
         private final InputStream inputStream;
         private final OutputStream outputStream;
-        private byte[] buffer;
+
+        private static final int BYTES = 16;
 
         public ConnectedThread(BluetoothSocket socket) {
             log("create ConnectedThread");
@@ -341,14 +340,57 @@ public class BluetoothService {
             log("BEGIN mConnectedThread");
             setName("ConnectedThread");
 
-            buffer = new byte[1024];
+            byte[] buffer = null;
+            int numberOfBytes = 0;
+            int index=0;
+            boolean flag = true;
+
+            while(true) {
+                if(flag)
+                {
+                    try {
+                        byte[] temp = new byte[inputStream.available()];
+                        if(inputStream.read(temp)>0)
+                        {
+                            numberOfBytes = Integer.parseInt(new String(temp,StandardCharsets.UTF_8));
+                            buffer = new byte[numberOfBytes];
+                            flag = false;
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        connectionLost();
+                        break;
+                    }
+                }else{
+                    try {
+                        byte[] data=new byte[inputStream.available()];
+                        int numbers=inputStream.read(data);
+
+                        System.arraycopy(data,0,buffer,index,numbers);
+                        index=index+numbers;
+
+                        if(index == numberOfBytes)
+                        {
+                            mHandler.obtainMessage(MESSAGE_READ,numberOfBytes,-1,buffer).sendToTarget();
+                            flag = true;
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        connectionLost();
+                        break;
+                    }
+                }
+            }
+
+            /*byte[] buffer = new byte[BYTES];
             int bytes;
 
             while (true) {
                 try {
                     // Read from the InputStream
                     bytes = inputStream.read(buffer);
-                    Log.d(TAG, new String(buffer, StandardCharsets.UTF_8));
+
+                    Log.d(TAG, new String(buffer, StandardCharsets.UTF_8) + " - " + bytes);
 
                     // Send the obtained bytes to the UI Activity
                     mHandler.obtainMessage(MESSAGE_READ, bytes, -1, buffer)
@@ -358,7 +400,7 @@ public class BluetoothService {
                     connectionLost();
                     break;
                 }
-            }
+            }*/
 
             log("END mConnectedThread");
         }
@@ -366,11 +408,38 @@ public class BluetoothService {
         public void write(byte[] buffer) {
             try {
                 outputStream.write(buffer);
+                outputStream.flush();
                 // Share the sent message back to the UI Activity
                 mHandler.obtainMessage(MESSAGE_WRITE, -1, -1, buffer)
                         .sendToTarget();
             } catch (IOException e) {
                 Log.e(TAG, "Exception during write", e);
+            }
+        }
+
+        private byte[] readAllBytes(InputStream inputStream) throws IOException {
+            final int bufLen = 4 * 0x400; // 4KB
+            byte[] buf = new byte[bufLen];
+            int readLen;
+            IOException exception = null;
+
+            try {
+                try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
+                    while ((readLen = inputStream.read(buf, 0, bufLen)) != -1)
+                        outputStream.write(buf, 0, readLen);
+
+                    return outputStream.toByteArray();
+                }
+            } catch (IOException e) {
+                exception = e;
+                throw e;
+            } finally {
+                if (exception == null) inputStream.close();
+                else try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    exception.addSuppressed(e);
+                }
             }
         }
 

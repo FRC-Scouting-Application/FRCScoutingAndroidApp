@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import java.util.List;
+
 import ca.tnoah.frc.scouting.R;
 import ca.tnoah.frc.scouting.models.dbo.Scout;
 import ca.tnoah.frc.scouting.models.dbo.Team;
@@ -84,7 +86,10 @@ public abstract class ScoutFragment extends Fragment {
             return;
         }
 
-        Intent switchToForm = FormActivity.editFromExisting(getContext(), scout);
+        List<Scout> scouts = db.scoutsDAO().getAll();
+        Scout scout1 = db.scoutsDAO().get(scout.id);
+
+        Intent switchToForm = FormActivity.editFromExisting(getContext(), scout1);
         startActivity(switchToForm);
     }
 

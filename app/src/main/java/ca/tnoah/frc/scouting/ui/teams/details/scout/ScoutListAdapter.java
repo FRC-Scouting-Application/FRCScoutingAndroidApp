@@ -53,7 +53,7 @@ public class ScoutListAdapter extends ArrayAdapter<Scout> {
 
         Scout scout = getItem(position);
         String title;
-        String subtitle = "Date"; // TODO: FIX DATES
+        String subtitle = ""; // TODO: FIX DATES
 
 
         switch (type) {

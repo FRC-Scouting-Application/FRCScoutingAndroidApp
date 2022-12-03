@@ -44,7 +44,8 @@ android {
                     'src/main/res/layouts/teams',
                     'src/main/res/layouts/templates',
                     'src/main/res/layouts/form',
-                    'src/main/res/layouts/counter'
+                    'src/main/res/layouts/counter',
+                    'src/main/res/layouts/login'
             ]
         }
     }
